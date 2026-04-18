@@ -15,3 +15,8 @@ export function getGodIconUrl(godId: string): string {
 
 /** Returns the local icon path for the dummy/golem unit. */
 export const DUMMY_ICON_URL = '/icons/champions/dummy.png'
+
+/** Returns the local icon path for a trait emblem (spatula item). Returns null if no emblem exists for that trait. */
+export function getEmblemIconUrl(traitId: string): string {
+  return `/icons/emblems/${traitId}.png`
+}
