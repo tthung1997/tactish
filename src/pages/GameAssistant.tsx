@@ -126,42 +126,43 @@ function CompDetail({
 
   return (
     <div className="mt-3 pt-3 border-t border-gray-700 flex flex-col gap-4">
-      {/* Board layout */}
-      {hasPositions && (
-        <div>
-          <p className="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-wide">Board Layout</p>
-          <div className="overflow-x-auto">
-            <HexGrid placements={placements} interactive={false} />
-          </div>
-        </div>
-      )}
+      {/* Board layout + Traits side by side */}
+      {(hasPositions || traitCounts.length > 0) && (
+        <div className="flex gap-4 items-start">
+          {hasPositions && (
+            <div className="shrink-0 overflow-x-auto">
+              <p className="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-wide">Board Layout</p>
+              <HexGrid placements={placements} interactive={false} />
+            </div>
+          )}
 
-      {/* Traits */}
-      {traitCounts.length > 0 && (
-        <div>
-          <p className="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-wide">Traits</p>
-          <div className="flex flex-col gap-0.5">
-            {traitCounts.map(({ id, count, trait }) => {
-              const active = (trait.breakpoints ?? []).filter((b) => count >= b).pop()
-              return (
-                <div
-                  key={id}
-                  className={`flex items-center gap-1.5 px-1.5 py-0.5 rounded text-xs ${active !== undefined ? 'bg-amber-900/40 text-amber-200' : 'text-gray-400'}`}
-                >
-                  <span className={`font-bold tabular-nums shrink-0 ${active !== undefined ? 'text-amber-400' : ''}`}>{count}</span>
-                  <span className="truncate">{trait.name}</span>
-                  <span className="ml-auto shrink-0 tabular-nums">
-                    {(trait.breakpoints ?? []).map((bp, i) => (
-                      <span key={bp} className={bp === active ? 'text-amber-400 font-bold' : 'text-gray-600'}>
-                        {i > 0 && <span className="text-gray-700">/</span>}
-                        {bp}
+          {traitCounts.length > 0 && (
+            <div className="flex-1 min-w-0">
+              <p className="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-wide">Traits</p>
+              <div className="flex flex-col gap-0.5">
+                {traitCounts.map(({ id, count, trait }) => {
+                  const active = (trait.breakpoints ?? []).filter((b) => count >= b).pop()
+                  return (
+                    <div
+                      key={id}
+                      className={`flex items-center gap-1.5 px-1.5 py-0.5 rounded text-xs ${active !== undefined ? 'bg-amber-900/40 text-amber-200' : 'text-gray-400'}`}
+                    >
+                      <span className={`font-bold tabular-nums shrink-0 ${active !== undefined ? 'text-amber-400' : ''}`}>{count}</span>
+                      <span className="truncate">{trait.name}</span>
+                      <span className="ml-auto shrink-0 tabular-nums">
+                        {(trait.breakpoints ?? []).map((bp, i) => (
+                          <span key={bp} className={bp === active ? 'text-amber-400 font-bold' : 'text-gray-600'}>
+                            {i > 0 && <span className="text-gray-700">/</span>}
+                            {bp}
+                          </span>
+                        ))}
                       </span>
-                    ))}
-                  </span>
-                </div>
-              )
-            })}
-          </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
