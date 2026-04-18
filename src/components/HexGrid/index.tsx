@@ -100,8 +100,8 @@ function HexCell({ row, col, champion, isSelected, interactive, onHexClick }: He
 
   // Clip path ID for this hex (unique per cell)
   const clipId = `hex-clip-${row}-${col}`
-  // Icon fits inside the hex inscribed circle
-  const iconSize = R * 1.5
+  // Expand icon to cover the full hex bounding box so it fills edge-to-edge
+  const iconSize = R * 2
   const iconX = cx - iconSize / 2
   const iconY = cy - iconSize / 2
 

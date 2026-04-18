@@ -88,11 +88,13 @@ function CompDetail({
   suggestion,
   championById,
   itemById,
+  traitById,
   selectedChampionIds,
 }: {
   suggestion: CompSuggestion
-  championById: Record<string, { id: string; name: string; cost: 1 | 2 | 3 | 4 | 5 }>
+  championById: Record<string, { id: string; name: string; cost: 1 | 2 | 3 | 4 | 5; traits: string[] }>
   itemById: Record<string, { id: string; name: string }>
+  traitById: Record<string, { id: string; name: string; breakpoints: number[] }>
   selectedChampionIds: string[]
 }) {
   const { comp } = suggestion
@@ -102,6 +104,19 @@ function CompDetail({
     [comp, championById]
   )
   const hasPositions = Object.keys(placements).length > 0
+
+  const traitCounts = useMemo(() => {
+    const counts: Record<string, number> = {}
+    for (const cc of comp.champions) {
+      if (isDummy(cc.championId)) continue
+      for (const tid of (championById[cc.championId]?.traits ?? []))
+        counts[tid] = (counts[tid] ?? 0) + 1
+    }
+    return Object.entries(counts)
+      .map(([id, count]) => ({ id, count, trait: traitById[id] }))
+      .filter((t) => t.trait)
+      .sort((a, b) => b.count - a.count)
+  }, [comp.champions, championById, traitById])
 
   const missingChampionIds = comp.champions
     .map((cc) => cc.championId)
@@ -117,6 +132,35 @@ function CompDetail({
           <p className="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-wide">Board Layout</p>
           <div className="overflow-x-auto">
             <HexGrid placements={placements} interactive={false} />
+          </div>
+        </div>
+      )}
+
+      {/* Traits */}
+      {traitCounts.length > 0 && (
+        <div>
+          <p className="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-wide">Traits</p>
+          <div className="flex flex-col gap-0.5">
+            {traitCounts.map(({ id, count, trait }) => {
+              const active = (trait.breakpoints ?? []).filter((b) => count >= b).pop()
+              return (
+                <div
+                  key={id}
+                  className={`flex items-center gap-1.5 px-1.5 py-0.5 rounded text-xs ${active !== undefined ? 'bg-amber-900/40 text-amber-200' : 'text-gray-400'}`}
+                >
+                  <span className={`font-bold tabular-nums shrink-0 ${active !== undefined ? 'text-amber-400' : ''}`}>{count}</span>
+                  <span className="truncate">{trait.name}</span>
+                  <span className="ml-auto shrink-0 tabular-nums">
+                    {(trait.breakpoints ?? []).map((bp, i) => (
+                      <span key={bp} className={bp === active ? 'text-amber-400 font-bold' : 'text-gray-600'}>
+                        {i > 0 && <span className="text-gray-700">/</span>}
+                        {bp}
+                      </span>
+                    ))}
+                  </span>
+                </div>
+              )
+            })}
           </div>
         </div>
       )}
@@ -266,7 +310,7 @@ export default function GameAssistant() {
     useGameStore()
   const { comps } = useCompStore()
   const { weights, setWeights } = useSettingsStore()
-  const { champions, baseComponents, completedItems, championById, itemById } = useSetData()
+  const { champions, baseComponents, completedItems, championById, itemById, traitById } = useSetData()
 
   const [showWeights, setShowWeights] = useState(false)
   const [expandedCompId, setExpandedCompId] = useState<string | null>(null)
@@ -521,6 +565,7 @@ export default function GameAssistant() {
                         suggestion={s}
                         championById={championById}
                         itemById={itemById}
+                        traitById={traitById}
                         selectedChampionIds={selectedChampionIds}
                       />
                     </div>
