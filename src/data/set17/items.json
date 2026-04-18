@@ -8,6 +8,7 @@
     { "id": "negatron-cloak", "name": "Negatron Cloak" },
     { "id": "giants-belt", "name": "Giant's Belt" },
     { "id": "spatula", "name": "Spatula" },
+    { "id": "frying-pan", "name": "Frying Pan" },
     { "id": "sparring-gloves", "name": "Sparring Gloves" }
   ],
   "completedItems": [
@@ -46,6 +47,23 @@
     { "id": "quicksilver", "name": "Quicksilver", "components": ["negatron-cloak", "sparring-gloves"] },
     { "id": "warmogs-armor", "name": "Warmog's Armor", "components": ["giants-belt", "giants-belt"] },
     { "id": "strikers-flail", "name": "Striker's Flail", "components": ["giants-belt", "sparring-gloves"] },
-    { "id": "thiefs-gloves", "name": "Thief's Gloves", "components": ["sparring-gloves", "sparring-gloves"] }
+    { "id": "thiefs-gloves", "name": "Thief's Gloves", "components": ["sparring-gloves", "sparring-gloves"] },
+
+    { "id": "arbiter-emblem",     "name": "Arbiter Emblem",     "components": ["spatula",    "negatron-cloak"] },
+    { "id": "bastion-emblem",     "name": "Bastion Emblem",     "components": ["frying-pan", "chain-vest"] },
+    { "id": "brawler-emblem",     "name": "Brawler Emblem",     "components": ["frying-pan", "giants-belt"] },
+    { "id": "challenger-emblem",  "name": "Challenger Emblem",  "components": ["frying-pan", "recurve-bow"] },
+    { "id": "dark-star-emblem",   "name": "Dark Star Emblem",   "components": ["spatula",    "bf-sword"] },
+    { "id": "marauder-emblem",    "name": "Marauder Emblem",    "components": ["frying-pan", "bf-sword"] },
+    { "id": "meeple-emblem",      "name": "Meeple Emblem",      "components": ["spatula",    "chain-vest"] },
+    { "id": "nova-emblem",        "name": "N.O.V.A. Emblem",    "components": ["spatula",    "sparring-gloves"] },
+    { "id": "primordian-emblem",  "name": "Primordian Emblem",  "components": ["spatula",    "giants-belt"] },
+    { "id": "rogue-emblem",       "name": "Rogue Emblem",       "components": ["frying-pan", "sparring-gloves"] },
+    { "id": "shepherd-emblem",    "name": "Shepherd Emblem",    "components": ["frying-pan", "tear-of-the-goddess"] },
+    { "id": "space-groove-emblem","name": "Space Groove Emblem","components": ["spatula",    "tear-of-the-goddess"] },
+    { "id": "stargazer-emblem",   "name": "Stargazer Emblem",   "components": ["spatula",    "needlessly-large-rod"] },
+    { "id": "timebreaker-emblem", "name": "Timebreaker Emblem", "components": ["spatula",    "recurve-bow"] },
+    { "id": "vanguard-emblem",    "name": "Vanguard Emblem",    "components": ["frying-pan", "negatron-cloak"] },
+    { "id": "voyager-emblem",     "name": "Voyager Emblem",     "components": ["frying-pan", "needlessly-large-rod"] }
   ]
 }
