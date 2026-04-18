@@ -1,6 +1,7 @@
 import { Champion, TeamComp, CompSuggestion, ScoringWeights, CompletedItem } from '../types'
 import { rankToWeight } from './ranks'
 import { countComponentMatches } from './items'
+import { isDummy } from './dummy'
 
 export const DEFAULT_WEIGHTS: ScoringWeights = {
   directWeight: 3.0,
@@ -18,11 +19,12 @@ export function scoreComp(
 ): CompSuggestion {
   const rankScore = rankToWeight(comp.rank)
 
-  // Direct champion match
-  const compChampIds = comp.champions.map(c => c.championId)
+  // Direct champion match (exclude dummies)
+  const realCompChampions = comp.champions.filter(c => !isDummy(c.championId))
+  const compChampIds = realCompChampions.map(c => c.championId)
   const matchedChampionIds = selectedChampionIds.filter(id => compChampIds.includes(id))
-  const directRatio = comp.champions.length > 0
-    ? matchedChampionIds.length / comp.champions.length
+  const directRatio = realCompChampions.length > 0
+    ? matchedChampionIds.length / realCompChampions.length
     : 0
 
   // Trait overlap
@@ -31,13 +33,13 @@ export function scoreComp(
     selectedChampionIds.flatMap(id => champById[id]?.traits ?? [])
   )
   const compTraits = new Set(
-    comp.champions.flatMap(c => champById[c.championId]?.traits ?? [])
+    realCompChampions.flatMap(c => champById[c.championId]?.traits ?? [])
   )
   const sharedTraitIds = [...compTraits].filter(t => userTraits.has(t))
   const traitRatio = compTraits.size > 0 ? sharedTraitIds.length / compTraits.size : 0
 
-  // Item match
-  const neededItemIds = comp.champions.flatMap(c => c.items)
+  // Item match (exclude dummies)
+  const neededItemIds = realCompChampions.flatMap(c => c.items)
   const { matchedCount, totalNeeded } = countComponentMatches(
     selectedComponentIds,
     neededItemIds,

@@ -70,7 +70,7 @@ export default function CompCard({
           <span className="font-bold text-white truncate">{comp.name}</span>
         </div>
         <div className="flex items-center gap-1 shrink-0">
-          <span className="text-xs text-gray-400">{comp.champions.length} champs</span>
+          <span className="text-xs text-gray-400">{comp.champions.filter(c => !c.championId.startsWith('__dummy_')).length} champs</span>
           {hasActions && (
             <div className="flex gap-1 ml-2" data-action>
               {onEdit && (

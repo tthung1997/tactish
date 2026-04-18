@@ -4,6 +4,7 @@ import { useCompStore } from '../stores/compStore'
 import { useSetData } from '../hooks/useSetData'
 import { ALL_RANKS } from '../utils/ranks'
 import { getChampionIconUrl, getItemIconUrl } from '../utils/icons'
+import { isDummy, newDummyId, DUMMY_ID_PREFIX } from '../utils/dummy'
 import type { Champion, CompChampion, CompletedItem, HexPosition, Rank, Trait } from '../types'
 
 // ── Board geometry (pointy-top hexes, matches TFT layout) ─────────────────────
@@ -24,10 +25,6 @@ const BOARD_H = PAD + R + (ROWS - 1) * VS + R + PAD + (18 - ITEM_OVERLAP) + 2
 const HEX_CLIP = 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
 
 // ── Dummy unit ────────────────────────────────────────────────────────────────
-const DUMMY_ID_PREFIX = '__dummy_'
-let dummyCounter = 0
-function newDummyId() { return `${DUMMY_ID_PREFIX}${++dummyCounter}` }
-function isDummy(championId: string) { return championId.startsWith(DUMMY_ID_PREFIX) }
 const DUMMY_CHAMPION: Champion = { id: DUMMY_ID_PREFIX, name: 'Dummy', cost: 1, traits: [] }
 
 // ── Cost palette ──────────────────────────────────────────────────────────────
@@ -708,9 +705,9 @@ export default function CompEditor() {
     if (realChampions.length === 0) { setError('Add at least one champion.'); return }
     setError(null)
     if (isEdit && id) {
-      updateComp(id, { name: name.trim(), rank, notes: notes.trim() || undefined, champions: realChampions })
+      updateComp(id, { name: name.trim(), rank, notes: notes.trim() || undefined, champions: champList })
     } else {
-      addComp({ name: name.trim(), rank, notes: notes.trim() || undefined, champions: realChampions })
+      addComp({ name: name.trim(), rank, notes: notes.trim() || undefined, champions: champList })
     }
     navigate('/comps')
   }
