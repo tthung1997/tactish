@@ -374,7 +374,7 @@ function ChampionPool({
 }
 
 // ── ItemPool ──────────────────────────────────────────────────────────────────
-function ItemPool({ items }: { items: CompletedItem[] }) {
+function ItemPool({ items, onItemClick }: { items: CompletedItem[], onItemClick?: (itemId: string) => void }) {
   const [search, setSearch] = useState('')
   const filtered = search
     ? items.filter((i) => i.name.toLowerCase().includes(search.toLowerCase()))
@@ -404,10 +404,13 @@ function ItemPool({ items }: { items: CompletedItem[] }) {
               e.dataTransfer.effectAllowed = 'copy'
             }}
             onDragEnd={() => { currentDrag = null }}
+            onClick={() => onItemClick?.(item.id)}
             title={item.name}
             style={{
               width: 36, height: 36, borderRadius: 4, overflow: 'hidden', flexShrink: 0,
-              border: '1px solid #4b5563', cursor: 'grab', background: '#1f2937',
+              border: '1px solid #4b5563',
+              cursor: onItemClick ? 'pointer' : 'grab',
+              background: '#1f2937',
             }}
           >
             <img
@@ -831,7 +834,10 @@ export default function CompEditor() {
           onPlace={handleClickPlace}
           onPlaceDummy={handleClickPlaceDummy}
         />
-        <ItemPool items={completedItems} />
+        <ItemPool
+          items={completedItems}
+          onItemClick={selectedData ? (itemId) => handleItemDrop(selectedData.championId, itemId) : undefined}
+        />
       </div>
     </div>
   )
