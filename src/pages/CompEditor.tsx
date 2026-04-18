@@ -794,43 +794,6 @@ export default function CompEditor() {
           style={{ width: 180 }}
         />
 
-        {/* Preferred Gods */}
-        <div className="flex items-center gap-1.5 shrink-0">
-          <span className="text-xs text-gray-400 shrink-0">Gods:</span>
-          {gods.map((god) => {
-            const isSelected = preferredGods.includes(god.id)
-            return (
-              <button
-                key={god.id}
-                type="button"
-                title={`${god.name} — ${god.title}`}
-                onClick={() =>
-                  setPreferredGods((prev) =>
-                    prev.includes(god.id) ? prev.filter((g) => g !== god.id) : [...prev, god.id]
-                  )
-                }
-                style={{
-                  width: 28, height: 28, borderRadius: 4, overflow: 'hidden', padding: 0,
-                  border: `2px solid ${isSelected ? '#f59e0b' : '#374151'}`,
-                  background: '#111827',
-                  flexShrink: 0,
-                  opacity: isSelected ? 1 : 0.45,
-                  cursor: 'pointer',
-                  transition: 'border-color 0.1s, opacity 0.1s',
-                }}
-              >
-                <img
-                  src={getGodIconUrl(god.id)}
-                  alt={god.name}
-                  draggable={false}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  onError={(e) => { e.currentTarget.style.display = 'none' }}
-                />
-              </button>
-            )
-          })}
-        </div>
-
         <div className="flex gap-2 shrink-0">
           {isEdit && (
             <button onClick={handleDelete} className="px-3 py-1.5 text-sm rounded bg-red-700 text-white hover:bg-red-600 transition-colors">Delete</button>
@@ -866,6 +829,43 @@ export default function CompEditor() {
           onItemClear={handleItemClear}
           onCarryToggle={handleCarryToggle}
         />
+      </div>
+
+      {/* ── Gods row ── */}
+      <div className="flex items-center gap-1.5">
+        <span className="text-xs text-gray-400 shrink-0">Preferred Gods:</span>
+        {gods.map((god) => {
+          const isSelected = preferredGods.includes(god.id)
+          return (
+            <button
+              key={god.id}
+              type="button"
+              title={`${god.name} — ${god.title}`}
+              onClick={() =>
+                setPreferredGods((prev) =>
+                  prev.includes(god.id) ? prev.filter((g) => g !== god.id) : [...prev, god.id]
+                )
+              }
+              style={{
+                width: 28, height: 28, borderRadius: 4, overflow: 'hidden', padding: 0,
+                border: `2px solid ${isSelected ? '#f59e0b' : '#374151'}`,
+                background: '#111827',
+                flexShrink: 0,
+                opacity: isSelected ? 1 : 0.45,
+                cursor: 'pointer',
+                transition: 'border-color 0.1s, opacity 0.1s',
+              }}
+            >
+              <img
+                src={getGodIconUrl(god.id)}
+                alt={god.name}
+                draggable={false}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                onError={(e) => { e.currentTarget.style.display = 'none' }}
+              />
+            </button>
+          )
+        })}
       </div>
 
       {/* ── Bottom row: Champion pool + Item pool ── */}
