@@ -58,6 +58,8 @@ function WeightSlider({
   )
 }
 
+const DUMMY_ICON_URL = 'https://raw.communitydragon.org/latest/game/assets/characters/petminigolem/hud/icon_minigolem_grey_tier1.png'
+
 // ── Build HexGrid placements from a TeamComp ─────────────────────────────────
 function buildPlacements(
   comp: TeamComp,
@@ -75,6 +77,7 @@ function buildPlacements(
       championName: champ.name,
       cost: champ.cost,
       isCarry: cc.isCarry,
+      icon: isDummy(cc.championId) ? DUMMY_ICON_URL : undefined,
     }
   }
   return placements

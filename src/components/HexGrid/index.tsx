@@ -129,7 +129,7 @@ function HexCell({ row, col, champion, isSelected, interactive, onHexClick }: He
       {/* Champion icon clipped to hex shape */}
       {champion && (
         <image
-          href={getChampionIconUrl(champion.championId)}
+          href={champion.icon ?? getChampionIconUrl(champion.championId)}
           x={iconX}
           y={iconY}
           width={iconSize}
