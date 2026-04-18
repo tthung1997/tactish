@@ -1,5 +1,6 @@
 import { TeamComp } from '../../types'
 import RankBadge from '../RankBadge'
+import { getGodIconUrl } from '../../utils/icons'
 
 interface CompCardProps {
   comp: TeamComp
@@ -12,6 +13,7 @@ interface CompCardProps {
   itemMatchRatio?: number
   matchedChampionIds?: string[]
   sharedTraitIds?: string[]
+  matchedGodIds?: string[]
   championNames?: Record<string, string>
 }
 
@@ -48,6 +50,7 @@ export default function CompCard({
   itemMatchRatio,
   matchedChampionIds,
   sharedTraitIds,
+  matchedGodIds,
   championNames,
 }: CompCardProps) {
   const hasScore = score !== undefined
@@ -71,6 +74,28 @@ export default function CompCard({
         </div>
         <div className="flex items-center gap-1 shrink-0">
           <span className="text-xs text-gray-400">{comp.champions.filter(c => !c.championId.startsWith('__dummy_')).length} champs</span>
+          {/* Preferred god icons */}
+          {(comp.preferredGods ?? []).length > 0 && (
+            <div className="flex gap-0.5 ml-1">
+              {(comp.preferredGods ?? []).map((godId) => {
+                const isMatched = matchedGodIds?.includes(godId)
+                return (
+                  <img
+                    key={godId}
+                    src={getGodIconUrl(godId)}
+                    alt={godId}
+                    title={godId}
+                    style={{
+                      width: 18, height: 18, borderRadius: 3, objectFit: 'cover',
+                      border: `1px solid ${isMatched ? '#f59e0b' : '#4b5563'}`,
+                      opacity: isMatched === false && matchedGodIds !== undefined ? 0.4 : 1,
+                    }}
+                    onError={(e) => { e.currentTarget.style.display = 'none' }}
+                  />
+                )
+              })}
+            </div>
+          )}
           {hasActions && (
             <div className="flex gap-1 ml-2" data-action>
               {onEdit && (

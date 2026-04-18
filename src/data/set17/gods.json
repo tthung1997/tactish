@@ -1,0 +1,11 @@
+[
+  { "id": "ahri",         "name": "Ahri",         "title": "God of Opulence"   },
+  { "id": "aurelion-sol", "name": "Aurelion Sol",  "title": "God of Wonders"    },
+  { "id": "ekko",         "name": "Ekko",          "title": "God of Time"       },
+  { "id": "evelynn",      "name": "Evelynn",       "title": "God of Temptation" },
+  { "id": "kayle",        "name": "Kayle",         "title": "God of Order"      },
+  { "id": "soraka",       "name": "Soraka",        "title": "God of Stars"      },
+  { "id": "thresh",       "name": "Thresh",        "title": "God of Pacts"      },
+  { "id": "varus",        "name": "Varus",         "title": "God of Love"       },
+  { "id": "yasuo",        "name": "Yasuo",         "title": "God of the Abyss"  }
+]

@@ -9,6 +9,12 @@ export type Rank =
 
 // ── Set data types (read-only, from JSON files) ───────────────────────────────
 
+export interface God {
+  id: string      // e.g. "ahri"
+  name: string    // e.g. "Ahri"
+  title: string   // e.g. "God of Opulence"
+}
+
 export interface Trait {
   id: string          // e.g. "dark-star"
   name: string        // e.g. "Dark Star"
@@ -63,8 +69,9 @@ export interface TeamComp {
   name: string
   rank: Rank
   champions: CompChampion[]
+  preferredGods?: string[]   // god ids this comp synergizes with
   notes?: string
-  createdAt: number      // Date.now()
+  createdAt: number
   updatedAt: number
 }
 
@@ -73,6 +80,7 @@ export interface TeamComp {
 export interface GameState {
   selectedChampionIds: string[]    // champions currently on bench/board
   selectedComponentIds: string[]   // base component items held
+  selectedGodIds: string[]         // up to 2 gods active this game
 }
 
 // ── Scoring / suggestion types ────────────────────────────────────────────────
@@ -91,8 +99,10 @@ export interface CompSuggestion {
   directRatio: number          // 0.0–1.0
   traitRatio: number           // 0.0–1.0
   itemMatchRatio: number       // 0.0–1.0
+  godMatchRatio: number        // 0.0–1.0 (0 if no preferred gods set)
   matchedChampionIds: string[]
   sharedTraitIds: string[]
+  matchedGodIds: string[]
   itemDetails: ItemMatchDetail[]
 }
 
@@ -111,6 +121,7 @@ export interface CompStoreState {
 export interface GameStoreState extends GameState {
   toggleChampion: (championId: string) => void
   toggleComponent: (componentId: string) => void
+  toggleGod: (godId: string) => void
   clearAll: () => void
 }
 
@@ -118,6 +129,7 @@ export interface ScoringWeights {
   directWeight: number    // default 3.0
   traitWeight: number     // default 1.0
   itemWeight: number      // default 2.0
+  godWeight: number       // default 1.5
 }
 
 export interface SettingsState {

@@ -7,6 +7,7 @@ export const DEFAULT_WEIGHTS: ScoringWeights = {
   directWeight: 3.0,
   traitWeight: 1.0,
   itemWeight: 2.0,
+  godWeight: 1.5,
 }
 
 export function scoreComp(
@@ -15,7 +16,8 @@ export function scoreComp(
   selectedComponentIds: string[],
   champions: Champion[],
   weights: ScoringWeights,
-  completedItems: CompletedItem[]
+  completedItems: CompletedItem[],
+  selectedGodIds: string[] = []
 ): CompSuggestion {
   const rankScore = rankToWeight(comp.rank)
 
@@ -47,10 +49,18 @@ export function scoreComp(
   )
   const itemMatchRatio = totalNeeded > 0 ? matchedCount / totalNeeded : 0
 
+  // God match
+  const preferredGods = comp.preferredGods ?? []
+  const matchedGodIds = selectedGodIds.filter(id => preferredGods.includes(id))
+  const godMatchRatio = preferredGods.length > 0
+    ? matchedGodIds.length / preferredGods.length
+    : 0
+
   // Score
   const champSignal = directRatio * weights.directWeight + traitRatio * weights.traitWeight
   const itemSignal = itemMatchRatio * weights.itemWeight
-  const finalScore = rankScore * (1 + champSignal + itemSignal)
+  const godSignal = godMatchRatio * weights.godWeight
+  const finalScore = rankScore * (1 + champSignal + itemSignal + godSignal)
 
   // Item details
   const uniqueItemIds = [...new Set(neededItemIds)]
@@ -79,8 +89,10 @@ export function scoreComp(
     directRatio,
     traitRatio,
     itemMatchRatio,
+    godMatchRatio,
     matchedChampionIds,
     sharedTraitIds,
+    matchedGodIds,
     itemDetails,
   }
 }
@@ -91,9 +103,10 @@ export function scoreAllComps(
   selectedComponentIds: string[],
   champions: Champion[],
   weights: ScoringWeights,
-  completedItems: CompletedItem[]
+  completedItems: CompletedItem[],
+  selectedGodIds: string[] = []
 ): CompSuggestion[] {
   return comps
-    .map(comp => scoreComp(comp, selectedChampionIds, selectedComponentIds, champions, weights, completedItems))
+    .map(comp => scoreComp(comp, selectedChampionIds, selectedComponentIds, champions, weights, completedItems, selectedGodIds))
     .sort((a, b) => b.finalScore - a.finalScore)
 }

@@ -12,7 +12,7 @@ import CompCard from '../components/CompCard'
 import HexGrid from '../components/HexGrid'
 import CollapsibleSection from '../components/CollapsibleSection'
 import type { PlacedChampion } from '../components/HexGrid'
-import { getItemIconUrl, DUMMY_ICON_URL } from '../utils/icons'
+import { getItemIconUrl, getGodIconUrl, DUMMY_ICON_URL } from '../utils/icons'
 import { isDummy } from '../utils/dummy'
 import type { CompSuggestion, TeamComp } from '../types'
 
@@ -88,14 +88,18 @@ function CompDetail({
   championById,
   itemById,
   traitById,
+  godById,
   selectedChampionIds,
+  selectedGodIds,
 }: {
   suggestion: CompSuggestion
   championById: Record<string, { id: string; name: string; cost: 1 | 2 | 3 | 4 | 5; traits: string[] }>
   itemById: Record<string, { id: string; name: string }>
   traitById: Record<string, { id: string; name: string; breakpoints: number[] }>
+  godById: Record<string, { id: string; name: string; title: string }>
   selectedChampionIds: string[]
-}) {
+  selectedGodIds: string[]
+}){
   const { comp } = suggestion
 
   const placements = useMemo(
@@ -267,6 +271,37 @@ function CompDetail({
           <p className="text-xs text-gray-300 leading-relaxed">{comp.notes}</p>
         </div>
       )}
+
+      {/* Preferred gods */}
+      {(comp.preferredGods ?? []).length > 0 && (
+        <div>
+          <p className="text-xs text-gray-400 mb-1.5 font-semibold uppercase tracking-wide">Preferred Gods</p>
+          <div className="flex flex-wrap gap-2">
+            {(comp.preferredGods ?? []).map((godId) => {
+              const god = godById[godId]
+              const isActive = selectedGodIds.includes(godId)
+              return (
+                <div
+                  key={godId}
+                  title={god ? `${god.name} — ${god.title}` : godId}
+                  className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs ${
+                    isActive ? 'bg-amber-900/40 border border-amber-600/60 text-amber-200' : 'bg-gray-700/50 border border-gray-600 text-gray-400'
+                  }`}
+                >
+                  <img
+                    src={getGodIconUrl(godId)}
+                    alt={god?.name ?? godId}
+                    style={{ width: 18, height: 18, borderRadius: 3, objectFit: 'cover' }}
+                    onError={(e) => { e.currentTarget.style.display = 'none' }}
+                  />
+                  <span>{god?.name ?? godId}</span>
+                  {isActive && <span className="text-amber-400">✓</span>}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -306,11 +341,11 @@ function ShortcutsModal({ onClose }: { onClose: () => void }) {
 
 // ── Main page ────────────────────────────────────────────────────────────────
 export default function GameAssistant() {
-  const { selectedChampionIds, selectedComponentIds, toggleChampion, toggleComponent, clearAll } =
+  const { selectedChampionIds, selectedComponentIds, selectedGodIds, toggleChampion, toggleComponent, toggleGod, clearAll } =
     useGameStore()
   const { comps } = useCompStore()
   const { weights, setWeights } = useSettingsStore()
-  const { champions, baseComponents, completedItems, championById, itemById, traitById } = useSetData()
+  const { champions, baseComponents, completedItems, championById, itemById, traitById, gods, godById } = useSetData()
 
   const [showWeights, setShowWeights] = useState(false)
   const [expandedCompId, setExpandedCompId] = useState<string | null>(null)
@@ -370,11 +405,12 @@ export default function GameAssistant() {
       selectedComponentIds,
       champions,
       weights,
-      completedItems
+      completedItems,
+      selectedGodIds
     )
-  }, [comps, selectedChampionIds, selectedComponentIds, champions, weights, completedItems])
+  }, [comps, selectedChampionIds, selectedComponentIds, champions, weights, completedItems, selectedGodIds])
 
-  const hasSelections = selectedChampionIds.length > 0 || selectedComponentIds.length > 0
+  const hasSelections = selectedChampionIds.length > 0 || selectedComponentIds.length > 0 || selectedGodIds.length > 0
 
   function toggleExpand(compId: string) {
     setExpandedCompId((prev) => (prev === compId ? null : compId))
@@ -436,6 +472,50 @@ export default function GameAssistant() {
               counts={componentCounts}
               onCountChange={setComponentCount}
             />
+          </CollapsibleSection>
+
+          {/* ── Gods ──────────────────────────────────── */}
+          <CollapsibleSection title="Gods" badge={selectedGodIds.length}>
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-xs text-gray-500">Select up to 2 gods active this game</p>
+              <button
+                onClick={() => useGameStore.setState({ selectedGodIds: [] })}
+                disabled={selectedGodIds.length === 0}
+                className="text-xs text-gray-400 hover:text-red-400 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Clear
+              </button>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {gods.map((god) => {
+                const isSelected = selectedGodIds.includes(god.id)
+                return (
+                  <button
+                    key={god.id}
+                    type="button"
+                    onClick={() => toggleGod(god.id)}
+                    title={`${god.name} — ${god.title}`}
+                    className={`flex flex-col items-center gap-1 p-1.5 rounded-lg border transition-all ${
+                      isSelected
+                        ? 'border-amber-500 bg-amber-900/30 text-amber-200'
+                        : 'border-gray-700 bg-gray-800 text-gray-500 hover:border-gray-500 hover:text-gray-300'
+                    }`}
+                    style={{ width: 56 }}
+                  >
+                    <img
+                      src={getGodIconUrl(god.id)}
+                      alt={god.name}
+                      style={{
+                        width: 36, height: 36, borderRadius: 6, objectFit: 'cover',
+                        opacity: isSelected ? 1 : 0.5,
+                      }}
+                      onError={(e) => { e.currentTarget.style.display = 'none' }}
+                    />
+                    <span className="text-xs leading-tight text-center truncate w-full">{god.name}</span>
+                  </button>
+                )
+              })}
+            </div>
           </CollapsibleSection>
 
           {/* ── Item Helper ───────────────────────────── */}
@@ -520,6 +600,13 @@ export default function GameAssistant() {
                 max={5.0}
                 onChange={(v) => setWeights({ itemWeight: v })}
               />
+              <WeightSlider
+                label="God match"
+                value={weights.godWeight}
+                min={0.0}
+                max={3.0}
+                onChange={(v) => setWeights({ godWeight: v })}
+              />
             </div>
           </Panel>
         )}
@@ -555,6 +642,7 @@ export default function GameAssistant() {
                     itemMatchRatio={hasSelections ? s.itemMatchRatio : undefined}
                     matchedChampionIds={hasSelections ? s.matchedChampionIds : undefined}
                     sharedTraitIds={hasSelections ? s.sharedTraitIds : undefined}
+                    matchedGodIds={hasSelections ? s.matchedGodIds : undefined}
                     championNames={championNames}
                   />
 
@@ -566,7 +654,9 @@ export default function GameAssistant() {
                         championById={championById}
                         itemById={itemById}
                         traitById={traitById}
+                        godById={godById}
                         selectedChampionIds={selectedChampionIds}
+                        selectedGodIds={selectedGodIds}
                       />
                     </div>
                   )}

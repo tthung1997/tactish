@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useCompStore } from '../stores/compStore'
 import { useSetData } from '../hooks/useSetData'
 import { ALL_RANKS } from '../utils/ranks'
-import { getChampionIconUrl, getItemIconUrl, DUMMY_ICON_URL } from '../utils/icons'
+import { getChampionIconUrl, getItemIconUrl, getGodIconUrl, DUMMY_ICON_URL } from '../utils/icons'
 import { isDummy, newDummyId, DUMMY_ID_PREFIX } from '../utils/dummy'
 import type { Champion, CompChampion, CompletedItem, HexPosition, Rank, Trait } from '../types'
 
@@ -603,13 +603,14 @@ export default function CompEditor() {
   const isEdit = !!id
 
   const { comps, addComp, updateComp, deleteComp } = useCompStore()
-  const { champions, completedItems, championById, traitById } = useSetData()
+  const { champions, completedItems, championById, traitById, gods } = useSetData()
 
   const existingComp = isEdit ? comps.find((c) => c.id === id) : undefined
 
   const [name, setName] = useState('')
   const [rank, setRank] = useState<Rank>('A')
   const [notes, setNotes] = useState('')
+  const [preferredGods, setPreferredGods] = useState<string[]>([])
   const [champList, setChampList] = useState<CompChampion[]>([])
   const [selectedChampId, setSelectedChampId] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -619,6 +620,7 @@ export default function CompEditor() {
       setName(existingComp.name)
       setRank(existingComp.rank)
       setNotes(existingComp.notes ?? '')
+      setPreferredGods(existingComp.preferredGods ?? [])
       setChampList(existingComp.champions.map((c) => ({ ...c, items: [...c.items] })))
     }
   }, [existingComp?.id]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -741,10 +743,11 @@ export default function CompEditor() {
     const realChampions = champList.filter((c) => !isDummy(c.championId))
     if (realChampions.length === 0) { setError('Add at least one champion.'); return }
     setError(null)
+    const gods = preferredGods.length > 0 ? preferredGods : undefined
     if (isEdit && id) {
-      updateComp(id, { name: name.trim(), rank, notes: notes.trim() || undefined, champions: champList })
+      updateComp(id, { name: name.trim(), rank, notes: notes.trim() || undefined, preferredGods: gods, champions: champList })
     } else {
-      addComp({ name: name.trim(), rank, notes: notes.trim() || undefined, champions: champList })
+      addComp({ name: name.trim(), rank, notes: notes.trim() || undefined, preferredGods: gods, champions: champList })
     }
     navigate('/comps')
   }
@@ -790,6 +793,44 @@ export default function CompEditor() {
           className="bg-gray-800 border border-gray-700 text-white rounded px-3 py-1.5 text-sm focus:outline-none focus:border-blue-500"
           style={{ width: 180 }}
         />
+
+        {/* Preferred Gods */}
+        <div className="flex items-center gap-1.5 shrink-0">
+          <span className="text-xs text-gray-400 shrink-0">Gods:</span>
+          {gods.map((god) => {
+            const isSelected = preferredGods.includes(god.id)
+            return (
+              <button
+                key={god.id}
+                type="button"
+                title={`${god.name} — ${god.title}`}
+                onClick={() =>
+                  setPreferredGods((prev) =>
+                    prev.includes(god.id) ? prev.filter((g) => g !== god.id) : [...prev, god.id]
+                  )
+                }
+                style={{
+                  width: 28, height: 28, borderRadius: 4, overflow: 'hidden', padding: 0,
+                  border: `2px solid ${isSelected ? '#f59e0b' : '#374151'}`,
+                  background: '#111827',
+                  flexShrink: 0,
+                  opacity: isSelected ? 1 : 0.45,
+                  cursor: 'pointer',
+                  transition: 'border-color 0.1s, opacity 0.1s',
+                }}
+              >
+                <img
+                  src={getGodIconUrl(god.id)}
+                  alt={god.name}
+                  draggable={false}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  onError={(e) => { e.currentTarget.style.display = 'none' }}
+                />
+              </button>
+            )
+          })}
+        </div>
+
         <div className="flex gap-2 shrink-0">
           {isEdit && (
             <button onClick={handleDelete} className="px-3 py-1.5 text-sm rounded bg-red-700 text-white hover:bg-red-600 transition-colors">Delete</button>
