@@ -27,7 +27,7 @@ function App() {
         <nav className="sticky top-0 z-50 bg-gray-800 border-b border-gray-700 px-4 py-3 flex items-center gap-6">
           {/* Logo + Set badge */}
           <div className="flex items-center gap-2 mr-2 shrink-0">
-            <span className="font-bold text-yellow-400 text-lg tracking-tight">TFT Tools</span>
+            <span className="font-bold text-yellow-400 text-lg tracking-tight">Tactish</span>
             <span className="px-1.5 py-0.5 text-xs font-semibold bg-yellow-500/20 text-yellow-400 border border-yellow-500/40 rounded leading-none">
               Set 17
             </span>

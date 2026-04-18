@@ -1,4 +1,4 @@
-# TFT Tools — Teamfight Tactics Companion App
+# Tactish — Teamfight Tactics Companion App
 
 A local web app to help you during Teamfight Tactics games: get real-time comp suggestions from your starting champions and item components, manage your meta comps on a visual hex board, and browse the full Set 17 database.
 
