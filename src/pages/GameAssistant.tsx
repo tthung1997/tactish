@@ -12,6 +12,7 @@ import CompCard from '../components/CompCard'
 import HexGrid from '../components/HexGrid'
 import CollapsibleSection from '../components/CollapsibleSection'
 import type { PlacedChampion } from '../components/HexGrid'
+import { getItemIconUrl } from '../utils/icons'
 import type { CompSuggestion, TeamComp } from '../types'
 
 // ── Section panel wrapper ────────────────────────────────────────────────────
@@ -133,14 +134,16 @@ function CompDetail({
                   {champ?.name ?? cc.championId}
                 </span>
                 {cc.items.length > 0 && (
-                  <span className="ml-auto flex gap-1 flex-wrap justify-end">
+                  <span className="ml-auto flex gap-1">
                     {cc.items.map((itemId, i) => (
-                      <span
+                      <img
                         key={`${itemId}-${i}`}
-                        className="px-1.5 py-0.5 rounded bg-gray-700 text-yellow-200"
-                      >
-                        {itemById[itemId]?.name ?? itemId}
-                      </span>
+                        src={getItemIconUrl(itemId)}
+                        alt={itemById[itemId]?.name ?? itemId}
+                        title={itemById[itemId]?.name ?? itemId}
+                        style={{ width: 22, height: 22, borderRadius: 3, border: '1px solid #4b5563' }}
+                        onError={(e) => { e.currentTarget.style.display = 'none' }}
+                      />
                     ))}
                   </span>
                 )}
@@ -176,20 +179,32 @@ function CompDetail({
               const canBuild = detail?.canBuild
               const partial = detail ? detail.partialMatch > 0 : false
               return (
-                <span
+                <div
                   key={id}
-                  className={`px-2 py-0.5 rounded text-xs border ${
-                    canBuild
-                      ? 'bg-green-900/40 border-green-700 text-green-200'
-                      : partial
-                      ? 'bg-yellow-900/30 border-yellow-700 text-yellow-200'
-                      : 'bg-gray-700 border-gray-600 text-gray-300'
-                  }`}
+                  title={`${itemById[id]?.name ?? id}${canBuild ? ' (can build)' : partial ? ' (partial)' : ''}`}
+                  style={{
+                    position: 'relative', width: 28, height: 28, borderRadius: 4, overflow: 'visible', flexShrink: 0,
+                  }}
                 >
-                  {itemById[id]?.name ?? id}
-                  {canBuild && ' ✓'}
-                  {!canBuild && partial && ' ½'}
-                </span>
+                  <img
+                    src={getItemIconUrl(id)}
+                    alt={itemById[id]?.name ?? id}
+                    style={{
+                      width: 28, height: 28, borderRadius: 4, objectFit: 'cover', display: 'block',
+                      border: `2px solid ${canBuild ? '#16a34a' : partial ? '#ca8a04' : '#4b5563'}`,
+                    }}
+                    onError={(e) => { e.currentTarget.style.display = 'none' }}
+                  />
+                  {(canBuild || partial) && (
+                    <span style={{
+                      position: 'absolute', bottom: -4, right: -4,
+                      fontSize: 9, lineHeight: 1, background: canBuild ? '#16a34a' : '#ca8a04',
+                      color: '#fff', borderRadius: 3, padding: '1px 2px',
+                    }}>
+                      {canBuild ? '✓' : '½'}
+                    </span>
+                  )}
+                </div>
               )
             })}
           </div>
