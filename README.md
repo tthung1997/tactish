@@ -1,6 +1,8 @@
 # TFT Tools — Teamfight Tactics Companion App
 
-A local web app to help you during Teamfight Tactics games.
+A local web app to help you during Teamfight Tactics games: get real-time comp suggestions from your starting champions and item components, manage your meta comps on a visual hex board, and browse the full Set 17 database.
+
+Built with React 19, TypeScript, Vite, Tailwind CSS, Zustand, and React Router.
 
 ## Features
 
@@ -27,6 +29,12 @@ npm run dev
 ```
 
 Open http://localhost:5173
+
+## Scripts
+
+- `npm run dev` — start the Vite dev server
+- `npm run build` — type-check and build for production
+- `npm run preview` — preview the production build
 
 ## Set Data
 
