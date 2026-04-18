@@ -58,6 +58,13 @@ function decDrag(s: string): DragPayload | null {
 
 function posKey(row: number, col: number) { return `${row}-${col}` }
 
+function findFirstEmptyCell(occupied: Set<string>): HexPosition | null {
+  for (let row = ROWS - 1; row >= 0; row--)
+    for (let col = 0; col < COLS; col++)
+      if (!occupied.has(posKey(row, col))) return { row, col }
+  return null
+}
+
 function hexXY(row: number, col: number) {
   const cx = PAD + (row % 2 === 0 ? HW / 2 : HW) + col * HW
   const cy = PAD + R + row * VS
@@ -256,15 +263,24 @@ function DragDropBoard({
 function ChampionPool({
   champions,
   placedIds,
+  onPlace,
+  onPlaceDummy,
 }: {
   champions: Champion[]
   placedIds: Set<string>
+  onPlace: (championId: string) => void
+  onPlaceDummy: () => void
 }) {
   const [search, setSearch] = useState('')
 
   const grouped = useMemo(() => {
     const q = search.toLowerCase()
-    const filtered = q ? champions.filter(c => c.name.toLowerCase().includes(q)) : champions
+    const filtered = q
+      ? champions.filter(c =>
+          c.name.toLowerCase().includes(q) ||
+          c.traits.some(t => t.toLowerCase().includes(q))
+        )
+      : champions
     const byGroup: Record<number, Champion[]> = {}
     for (const c of filtered) {
       ;(byGroup[c.cost] ??= []).push(c)
@@ -296,6 +312,7 @@ function ChampionPool({
             e.dataTransfer.effectAllowed = 'move'
           }}
           onDragEnd={() => { currentDrag = null }}
+          onClick={() => onPlaceDummy()}
           title="Dummy unit (placeholder)"
           style={{
             width: 40, height: 40, borderRadius: 4, flexShrink: 0,
@@ -329,6 +346,7 @@ function ChampionPool({
                     e.dataTransfer.effectAllowed = 'move'
                   }}
                   onDragEnd={() => { currentDrag = null }}
+                  onClick={() => { if (!placed) onPlace(champ.id) }}
                   title={champ.name}
                   style={{
                     width: 40, height: 40, borderRadius: 4, overflow: 'hidden', flexShrink: 0,
@@ -620,6 +638,21 @@ export default function CompEditor() {
     [champList],
   )
 
+  const occupiedKeys = useMemo(
+    () => new Set(champList.filter((c) => c.position).map((c) => posKey(c.position!.row, c.position!.col))),
+    [champList],
+  )
+
+  function handleClickPlace(championId: string) {
+    const pos = findFirstEmptyCell(occupiedKeys)
+    if (pos) handlePlace(championId, pos)
+  }
+
+  function handleClickPlaceDummy() {
+    const pos = findFirstEmptyCell(occupiedKeys)
+    if (pos) handlePlaceDummy(pos)
+  }
+
   // ── Place / move champion ────────────────────────────────────────────────────
   function handlePlace(championId: string, pos: HexPosition, fromPos?: HexPosition) {
     const targetKey = posKey(pos.row, pos.col)
@@ -792,7 +825,12 @@ export default function CompEditor() {
 
       {/* ── Bottom row: Champion pool + Item pool ── */}
       <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
-        <ChampionPool champions={champions} placedIds={placedIds} />
+        <ChampionPool
+          champions={champions}
+          placedIds={placedIds}
+          onPlace={handleClickPlace}
+          onPlaceDummy={handleClickPlaceDummy}
+        />
         <ItemPool items={completedItems} />
       </div>
     </div>
