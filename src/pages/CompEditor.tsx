@@ -189,9 +189,12 @@ function DragDropBoard({
               {cell && (
                 <>
                   {isDummy(cell.championId) ? (
-                    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, color: '#6b7280', userSelect: 'none' }}>
-                      👤
-                    </div>
+                    <img
+                      src="https://raw.communitydragon.org/latest/game/assets/characters/petminigolem/hud/icon_minigolem_grey_tier1.png"
+                      alt="Dummy"
+                      draggable={false}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
                   ) : (
                     <img
                       src={getChampionIconUrl(cell.championId)}
@@ -300,11 +303,15 @@ function ChampionPool({
           style={{
             width: 40, height: 40, borderRadius: 4, flexShrink: 0,
             border: '2px dashed #4b5563', cursor: 'grab', background: '#1f2937',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 20, userSelect: 'none',
+            overflow: 'hidden',
           }}
         >
-          👤
+          <img
+            src="https://raw.communitydragon.org/latest/game/assets/characters/petminigolem/hud/icon_minigolem_grey_tier1.png"
+            alt="Dummy"
+            draggable={false}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
         </div>
       </div>
       <div className="flex flex-col gap-1.5">
