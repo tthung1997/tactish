@@ -13,6 +13,7 @@ import HexGrid from '../components/HexGrid'
 import CollapsibleSection from '../components/CollapsibleSection'
 import type { PlacedChampion } from '../components/HexGrid'
 import { getItemIconUrl } from '../utils/icons'
+import { isDummy } from '../utils/dummy'
 import type { CompSuggestion, TeamComp } from '../types'
 
 // ── Section panel wrapper ────────────────────────────────────────────────────
@@ -65,7 +66,9 @@ function buildPlacements(
   const placements: Record<string, PlacedChampion> = {}
   for (const cc of comp.champions) {
     if (!cc.position) continue
-    const champ = championById[cc.championId]
+    const champ = isDummy(cc.championId)
+      ? { name: 'Dummy', cost: 1 as const }
+      : championById[cc.championId]
     if (!champ) continue
     placements[`${cc.position.row}-${cc.position.col}`] = {
       championId: cc.championId,
@@ -99,7 +102,7 @@ function CompDetail({
 
   const missingChampionIds = comp.champions
     .map((cc) => cc.championId)
-    .filter((id) => !selectedChampionIds.includes(id))
+    .filter((id) => !isDummy(id) && !selectedChampionIds.includes(id))
 
   const allNeededItemIds = [...new Set(comp.champions.flatMap((cc) => cc.items))]
 
@@ -119,7 +122,7 @@ function CompDetail({
       <div>
         <p className="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-wide">Champions</p>
         <div className="flex flex-col gap-1.5">
-          {comp.champions.map((cc) => {
+          {comp.champions.filter((cc) => !isDummy(cc.championId)).map((cc) => {
             const champ = championById[cc.championId]
             const isOwned = selectedChampionIds.includes(cc.championId)
             return (
