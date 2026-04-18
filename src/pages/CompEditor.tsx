@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useCompStore } from '../stores/compStore'
 import { useSetData } from '../hooks/useSetData'
-import RankBadge from '../components/RankBadge'
 import { ALL_RANKS } from '../utils/ranks'
 import { getChampionIconUrl, getItemIconUrl } from '../utils/icons'
 import type { Champion, CompChampion, CompletedItem, HexPosition, Rank, Trait } from '../types'
@@ -24,6 +23,13 @@ const BOARD_H = PAD + R + (ROWS - 1) * VS + R + PAD + (18 - ITEM_OVERLAP) + 2
 
 const HEX_CLIP = 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
 
+// ── Dummy unit ────────────────────────────────────────────────────────────────
+const DUMMY_ID_PREFIX = '__dummy_'
+let dummyCounter = 0
+function newDummyId() { return `${DUMMY_ID_PREFIX}${++dummyCounter}` }
+function isDummy(championId: string) { return championId.startsWith(DUMMY_ID_PREFIX) }
+const DUMMY_CHAMPION: Champion = { id: DUMMY_ID_PREFIX, name: 'Dummy', cost: 1, traits: [] }
+
 // ── Cost palette ──────────────────────────────────────────────────────────────
 const COST_BG: Record<number, string> = {
   1: '#4b5563', 2: '#15803d', 3: '#1d4ed8', 4: '#6d28d9', 5: '#b45309',
@@ -44,6 +50,7 @@ type DragPayload =
   | { type: 'pool-champion'; championId: string }
   | { type: 'board-champion'; championId: string; from: HexPosition }
   | { type: 'item'; itemId: string }
+  | { type: 'dummy' }
 
 let currentDrag: DragPayload | null = null
 
@@ -74,6 +81,7 @@ function DragDropBoard({
   selectedChampId,
   onSelect,
   onPlace,
+  onPlaceDummy,
   onRemove,
   onItemDrop,
 }: {
@@ -81,9 +89,10 @@ function DragDropBoard({
   selectedChampId: string | null
   onSelect: (id: string | null) => void
   onPlace: (championId: string, pos: HexPosition, fromPos?: HexPosition) => void
+  onPlaceDummy: (pos: HexPosition) => void
   onRemove: (championId: string) => void
   onItemDrop: (championId: string, itemId: string) => void
-}) {
+}){
   const [dragOverKey, setDragOverKey] = useState<string | null>(null)
 
   const cells = useMemo(() => {
@@ -154,7 +163,9 @@ function DragDropBoard({
               if (!p) return
               if (p.type === 'pool-champion' || p.type === 'board-champion') {
                 onPlace(p.championId, { row, col }, p.type === 'board-champion' ? p.from : undefined)
-              } else if (p.type === 'item' && cell) {
+              } else if (p.type === 'dummy') {
+                onPlaceDummy({ row, col })
+              } else if (p.type === 'item' && cell && !isDummy(cell.championId)) {
                 onItemDrop(cell.championId, p.itemId)
               }
             }}
@@ -177,13 +188,19 @@ function DragDropBoard({
             >
               {cell && (
                 <>
-                  <img
-                    src={getChampionIconUrl(cell.championId)}
-                    alt={cell.champion.name}
-                    draggable={false}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    onError={(e) => { e.currentTarget.style.display = 'none' }}
-                  />
+                  {isDummy(cell.championId) ? (
+                    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, color: '#6b7280', userSelect: 'none' }}>
+                      👤
+                    </div>
+                  ) : (
+                    <img
+                      src={getChampionIconUrl(cell.championId)}
+                      alt={cell.champion.name}
+                      draggable={false}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      onError={(e) => { e.currentTarget.style.display = 'none' }}
+                    />
+                  )}
                   {cell.isCarry && (
                     <span style={{
                       position: 'absolute', top: 2, left: '50%', transform: 'translateX(-50%)',
@@ -195,7 +212,7 @@ function DragDropBoard({
             </div>
 
             {/* Item icons — overlapping bottom edge of hex */}
-            {cell && (
+            {cell && !isDummy(cell.championId) && (
               <div style={{
                 position: 'absolute',
                 top: HH - ITEM_OVERLAP,
@@ -266,6 +283,29 @@ function ChampionPool({
           placeholder="Search…"
           className="bg-gray-800 border border-gray-700 text-white text-xs rounded px-2 py-1 w-28 focus:outline-none focus:border-blue-500"
         />
+      </div>
+      {/* Dummy tile */}
+      <div className="flex items-center gap-2">
+        <span className="text-xs text-gray-500 shrink-0">Dummy</span>
+        <div
+          draggable
+          onDragStart={(e) => {
+            const p: DragPayload = { type: 'dummy' }
+            currentDrag = p
+            e.dataTransfer.setData('text/plain', encDrag(p))
+            e.dataTransfer.effectAllowed = 'move'
+          }}
+          onDragEnd={() => { currentDrag = null }}
+          title="Dummy unit (placeholder)"
+          style={{
+            width: 40, height: 40, borderRadius: 4, flexShrink: 0,
+            border: '2px dashed #4b5563', cursor: 'grab', background: '#1f2937',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 20, userSelect: 'none',
+          }}
+        >
+          👤
+        </div>
       </div>
       <div className="flex flex-col gap-1.5">
         {grouped.map(({ cost, champs }) => (
@@ -498,7 +538,7 @@ function TraitsPanel({
   }, [champList, championById, traitById])
 
   return (
-    <div className="flex flex-col gap-1 shrink-0" style={{ width: 140 }}>
+    <div className="flex flex-col gap-1 shrink-0" style={{ width: 190 }}>
       <span className="text-xs font-bold text-gray-400 uppercase tracking-wide">Traits</span>
       {traitCounts.length === 0 ? (
         <span className="text-xs text-gray-600">No champions</span>
@@ -513,7 +553,14 @@ function TraitsPanel({
               >
                 <span className={`font-bold tabular-nums shrink-0 ${active !== undefined ? 'text-amber-400' : ''}`}>{count}</span>
                 <span className="truncate">{trait.name}</span>
-                {active !== undefined && <span className="ml-auto text-amber-500 text-xs shrink-0">★</span>}
+                <span className="ml-auto shrink-0 tabular-nums">
+                  {(trait.breakpoints ?? []).map((bp, i) => (
+                    <span key={bp} className={bp === active ? 'text-amber-400 font-bold' : 'text-gray-600'}>
+                      {i > 0 && <span className="text-gray-700">/</span>}
+                      {bp}
+                    </span>
+                  ))}
+                </span>
               </div>
             )
           })}
@@ -555,7 +602,7 @@ export default function CompEditor() {
     const map: Record<string, BoardCell> = {}
     for (const cc of champList) {
       if (!cc.position) continue
-      const champ = championById[cc.championId]
+      const champ = isDummy(cc.championId) ? DUMMY_CHAMPION : championById[cc.championId]
       if (!champ) continue
       map[posKey(cc.position.row, cc.position.col)] = {
         championId: cc.championId, champion: champ, items: cc.items, isCarry: cc.isCarry,
@@ -588,8 +635,7 @@ export default function CompEditor() {
       })
       // Placing a brand-new champion from pool
       if (!alreadyIn) {
-        const champ = championById[championId]
-        if (champ) {
+        if (isDummy(championId) || championById[championId]) {
           updated = updated.map((c) =>
             occupant && c.championId === occupant.championId ? { ...c, position: undefined } : c,
           )
@@ -598,6 +644,11 @@ export default function CompEditor() {
       }
       return updated
     })
+  }
+
+  // ── Place dummy ──────────────────────────────────────────────────────────────
+  function handlePlaceDummy(pos: HexPosition) {
+    handlePlace(newDummyId(), pos)
   }
 
   // ── Remove champion ──────────────────────────────────────────────────────────
@@ -646,12 +697,13 @@ export default function CompEditor() {
   // ── Save / Cancel / Delete ───────────────────────────────────────────────────
   function handleSave() {
     if (!name.trim()) { setError('Name is required.'); return }
-    if (champList.length === 0) { setError('Add at least one champion.'); return }
+    const realChampions = champList.filter((c) => !isDummy(c.championId))
+    if (realChampions.length === 0) { setError('Add at least one champion.'); return }
     setError(null)
     if (isEdit && id) {
-      updateComp(id, { name: name.trim(), rank, notes: notes.trim() || undefined, champions: champList })
+      updateComp(id, { name: name.trim(), rank, notes: notes.trim() || undefined, champions: realChampions })
     } else {
-      addComp({ name: name.trim(), rank, notes: notes.trim() || undefined, champions: champList })
+      addComp({ name: name.trim(), rank, notes: notes.trim() || undefined, champions: realChampions })
     }
     navigate('/comps')
   }
@@ -663,7 +715,7 @@ export default function CompEditor() {
 
   const selectedCC = selectedChampId ? champList.find((c) => c.championId === selectedChampId) : null
   const selectedData =
-    selectedCC && championById[selectedCC.championId]
+    selectedCC && !isDummy(selectedCC.championId) && championById[selectedCC.championId]
       ? { championId: selectedCC.championId, champion: championById[selectedCC.championId], cc: selectedCC }
       : null
 
@@ -688,7 +740,6 @@ export default function CompEditor() {
           >
             {ALL_RANKS.map((r) => <option key={r} value={r}>{r}</option>)}
           </select>
-          <RankBadge rank={rank} size="md" />
         </div>
         <input
           type="text"
@@ -720,6 +771,7 @@ export default function CompEditor() {
             selectedChampId={selectedChampId}
             onSelect={setSelectedChampId}
             onPlace={handlePlace}
+            onPlaceDummy={handlePlaceDummy}
             onRemove={handleRemove}
             onItemDrop={handleItemDrop}
           />
