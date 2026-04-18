@@ -1,0 +1,525 @@
+import { useMemo, useState, useEffect, useCallback } from 'react'
+import { Link } from 'react-router-dom'
+import { useGameStore } from '../stores/gameStore'
+import { useCompStore } from '../stores/compStore'
+import { useSettingsStore } from '../stores/settingsStore'
+import { useSetData } from '../hooks/useSetData'
+import { scoreAllComps, DEFAULT_WEIGHTS } from '../utils/scoring'
+import ChampionSelect from '../components/ChampionSelect'
+import ItemSelect from '../components/ItemSelect'
+import ItemHelper from '../components/ItemHelper'
+import CompCard from '../components/CompCard'
+import HexGrid from '../components/HexGrid'
+import CollapsibleSection from '../components/CollapsibleSection'
+import type { PlacedChampion } from '../components/HexGrid'
+import type { CompSuggestion, TeamComp } from '../types'
+
+// ── Section panel wrapper ────────────────────────────────────────────────────
+function Panel({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={`bg-gray-800 rounded-lg border border-gray-700 p-4 ${className}`}>
+      {children}
+    </div>
+  )
+}
+
+// ── Weights slider row ───────────────────────────────────────────────────────
+function WeightSlider({
+  label,
+  value,
+  min,
+  max,
+  step = 0.1,
+  onChange,
+}: {
+  label: string
+  value: number
+  min: number
+  max: number
+  step?: number
+  onChange: (v: number) => void
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="w-28 text-xs text-gray-400 shrink-0">{label}</span>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(e) => onChange(parseFloat(e.target.value))}
+        className="flex-1 accent-yellow-400"
+      />
+      <span className="w-8 text-xs text-gray-200 text-right">{value.toFixed(1)}</span>
+    </div>
+  )
+}
+
+// ── Build HexGrid placements from a TeamComp ─────────────────────────────────
+function buildPlacements(
+  comp: TeamComp,
+  championById: Record<string, { name: string; cost: 1 | 2 | 3 | 4 | 5 }>
+): Record<string, PlacedChampion> {
+  const placements: Record<string, PlacedChampion> = {}
+  for (const cc of comp.champions) {
+    if (!cc.position) continue
+    const champ = championById[cc.championId]
+    if (!champ) continue
+    placements[`${cc.position.row}-${cc.position.col}`] = {
+      championId: cc.championId,
+      championName: champ.name,
+      cost: champ.cost,
+      isCarry: cc.isCarry,
+    }
+  }
+  return placements
+}
+
+// ── Expanded comp detail panel ───────────────────────────────────────────────
+function CompDetail({
+  suggestion,
+  championById,
+  itemById,
+  selectedChampionIds,
+}: {
+  suggestion: CompSuggestion
+  championById: Record<string, { id: string; name: string; cost: 1 | 2 | 3 | 4 | 5 }>
+  itemById: Record<string, { id: string; name: string }>
+  selectedChampionIds: string[]
+}) {
+  const { comp } = suggestion
+
+  const placements = useMemo(
+    () => buildPlacements(comp, championById),
+    [comp, championById]
+  )
+  const hasPositions = Object.keys(placements).length > 0
+
+  const missingChampionIds = comp.champions
+    .map((cc) => cc.championId)
+    .filter((id) => !selectedChampionIds.includes(id))
+
+  const allNeededItemIds = [...new Set(comp.champions.flatMap((cc) => cc.items))]
+
+  return (
+    <div className="mt-3 pt-3 border-t border-gray-700 flex flex-col gap-4">
+      {/* Board layout */}
+      {hasPositions && (
+        <div>
+          <p className="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-wide">Board Layout</p>
+          <div className="overflow-x-auto">
+            <HexGrid placements={placements} interactive={false} />
+          </div>
+        </div>
+      )}
+
+      {/* Champions with items */}
+      <div>
+        <p className="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-wide">Champions</p>
+        <div className="flex flex-col gap-1.5">
+          {comp.champions.map((cc) => {
+            const champ = championById[cc.championId]
+            const isOwned = selectedChampionIds.includes(cc.championId)
+            return (
+              <div
+                key={cc.championId}
+                className={`flex items-center gap-2 text-xs rounded px-2 py-1.5 ${
+                  isOwned ? 'bg-blue-900/30 border border-blue-700/50' : 'bg-gray-750 border border-gray-700'
+                }`}
+              >
+                {cc.isCarry && <span title="Carry">⭐</span>}
+                <span className={`font-semibold ${isOwned ? 'text-blue-200' : 'text-gray-300'}`}>
+                  {champ?.name ?? cc.championId}
+                </span>
+                {cc.items.length > 0 && (
+                  <span className="ml-auto flex gap-1 flex-wrap justify-end">
+                    {cc.items.map((itemId, i) => (
+                      <span
+                        key={`${itemId}-${i}`}
+                        className="px-1.5 py-0.5 rounded bg-gray-700 text-yellow-200"
+                      >
+                        {itemById[itemId]?.name ?? itemId}
+                      </span>
+                    ))}
+                  </span>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Missing champions */}
+      {missingChampionIds.length > 0 && (
+        <div>
+          <p className="text-xs text-gray-400 mb-1.5 font-semibold uppercase tracking-wide">
+            Missing Champions ({missingChampionIds.length})
+          </p>
+          <div className="flex flex-wrap gap-1">
+            {missingChampionIds.map((id) => (
+              <span key={id} className="px-2 py-0.5 rounded bg-red-900/30 border border-red-700/50 text-red-300 text-xs">
+                {championById[id]?.name ?? id}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Items needed */}
+      {allNeededItemIds.length > 0 && (
+        <div>
+          <p className="text-xs text-gray-400 mb-1.5 font-semibold uppercase tracking-wide">Items Needed</p>
+          <div className="flex flex-wrap gap-1">
+            {allNeededItemIds.map((id) => {
+              const detail = suggestion.itemDetails.find((d) => d.completedItemId === id)
+              const canBuild = detail?.canBuild
+              const partial = detail ? detail.partialMatch > 0 : false
+              return (
+                <span
+                  key={id}
+                  className={`px-2 py-0.5 rounded text-xs border ${
+                    canBuild
+                      ? 'bg-green-900/40 border-green-700 text-green-200'
+                      : partial
+                      ? 'bg-yellow-900/30 border-yellow-700 text-yellow-200'
+                      : 'bg-gray-700 border-gray-600 text-gray-300'
+                  }`}
+                >
+                  {itemById[id]?.name ?? id}
+                  {canBuild && ' ✓'}
+                  {!canBuild && partial && ' ½'}
+                </span>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      {comp.notes && (
+        <div>
+          <p className="text-xs text-gray-400 mb-1 font-semibold uppercase tracking-wide">Notes</p>
+          <p className="text-xs text-gray-300 leading-relaxed">{comp.notes}</p>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ── Keyboard shortcuts modal ─────────────────────────────────────────────────
+function ShortcutsModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="bg-gray-800 border border-gray-600 rounded-xl p-6 shadow-2xl max-w-xs w-full mx-4"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-sm font-bold text-white uppercase tracking-wide">⌨ Keyboard Shortcuts</h3>
+          <button onClick={onClose} className="text-gray-400 hover:text-white text-lg leading-none">×</button>
+        </div>
+        <div className="flex flex-col gap-2 text-sm">
+          {[
+            { key: 'Esc', desc: 'Clear all selections' },
+            { key: '?',   desc: 'Toggle this help' },
+          ].map(({ key, desc }) => (
+            <div key={key} className="flex items-center justify-between gap-4">
+              <kbd className="px-2 py-1 bg-gray-700 border border-gray-500 rounded text-xs font-mono text-yellow-300 shrink-0">
+                {key}
+              </kbd>
+              <span className="text-gray-300 text-xs">{desc}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ── Main page ────────────────────────────────────────────────────────────────
+export default function GameAssistant() {
+  const { selectedChampionIds, selectedComponentIds, toggleChampion, toggleComponent, clearAll } =
+    useGameStore()
+  const { comps } = useCompStore()
+  const { weights, setWeights } = useSettingsStore()
+  const { champions, baseComponents, completedItems, championById, itemById } = useSetData()
+
+  const [showWeights, setShowWeights] = useState(false)
+  const [expandedCompId, setExpandedCompId] = useState<string | null>(null)
+  const [showShortcuts, setShowShortcuts] = useState(false)
+
+  // ── Keyboard shortcuts ───────────────────────────────────────────────────
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement).tagName
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return
+      if (e.key === 'Escape') {
+        if (showShortcuts) {
+          setShowShortcuts(false)
+        } else {
+          clearAll()
+        }
+      } else if (e.key === '?') {
+        setShowShortcuts((v) => !v)
+      }
+    },
+    [clearAll, showShortcuts]
+  )
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [handleKeyDown])
+
+  // Computed component counts for ItemSelect
+  const componentCounts = useMemo(() => {
+    const counts: Record<string, number> = {}
+    for (const id of selectedComponentIds) counts[id] = (counts[id] ?? 0) + 1
+    return counts
+  }, [selectedComponentIds])
+
+  // Set component count: remove all then add N
+  function setComponentCount(componentId: string, count: number) {
+    useGameStore.setState((state) => {
+      const without = state.selectedComponentIds.filter((id) => id !== componentId)
+      const entries: string[] = Array(Math.min(Math.max(0, count), 9)).fill(componentId)
+      return { selectedComponentIds: [...without, ...entries] }
+    })
+  }
+
+  // Champion name map for CompCard
+  const championNames = useMemo(
+    () => Object.fromEntries(champions.map((c) => [c.id, c.name])),
+    [champions]
+  )
+
+  // Scored / sorted suggestions
+  const suggestions = useMemo<CompSuggestion[]>(() => {
+    if (comps.length === 0) return []
+    return scoreAllComps(
+      comps,
+      selectedChampionIds,
+      selectedComponentIds,
+      champions,
+      weights,
+      completedItems
+    )
+  }, [comps, selectedChampionIds, selectedComponentIds, champions, weights, completedItems])
+
+  const hasSelections = selectedChampionIds.length > 0 || selectedComponentIds.length > 0
+
+  function toggleExpand(compId: string) {
+    setExpandedCompId((prev) => (prev === compId ? null : compId))
+  }
+
+  return (
+    <>
+      {showShortcuts && <ShortcutsModal onClose={() => setShowShortcuts(false)} />}
+      <div className="flex flex-col lg:flex-row gap-4 max-w-[1600px] mx-auto">
+        {/* ── Left column ─────────────────────────────────────────────── */}
+        <div className="lg:w-[40%] flex flex-col gap-4 min-w-0">
+
+          {/* Top bar: page title + Clear All */}
+          <div className="flex items-center justify-between">
+            <h1 className="text-xl font-bold text-white">Game Assistant</h1>
+            <button
+              onClick={clearAll}
+              disabled={!hasSelections}
+              className="px-3 py-1.5 text-sm rounded bg-gray-700 text-gray-300 hover:bg-gray-600 border border-gray-600 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              Clear All
+            </button>
+          </div>
+
+          {/* ── Champion Selection ────────────────────── */}
+          <CollapsibleSection title="Champions" badge={selectedChampionIds.length}>
+            <div className="flex justify-end mb-2">
+              <button
+                onClick={() => useGameStore.setState({ selectedChampionIds: [] })}
+                disabled={selectedChampionIds.length === 0}
+                className="text-xs text-gray-400 hover:text-red-400 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Clear
+              </button>
+            </div>
+            <ChampionSelect
+              champions={champions}
+              selected={selectedChampionIds}
+              onToggle={toggleChampion}
+              mode="multi"
+            />
+          </CollapsibleSection>
+
+          {/* ── Item Components ───────────────────────── */}
+          <CollapsibleSection title="Item Components" badge={selectedComponentIds.length}>
+            <div className="flex justify-end mb-2">
+              <button
+                onClick={() => useGameStore.setState({ selectedComponentIds: [] })}
+                disabled={selectedComponentIds.length === 0}
+                className="text-xs text-gray-400 hover:text-red-400 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Clear
+              </button>
+            </div>
+            <ItemSelect
+              baseComponents={baseComponents}
+              selected={selectedComponentIds}
+              onToggle={toggleComponent}
+              counts={componentCounts}
+              onCountChange={setComponentCount}
+            />
+          </CollapsibleSection>
+
+          {/* ── Item Helper ───────────────────────────── */}
+          <CollapsibleSection title="Item Helper" defaultOpen={true}>
+            <ItemHelper
+              availableComponentIds={selectedComponentIds}
+              baseComponents={baseComponents}
+              completedItems={completedItems}
+              comps={comps}
+            />
+          </CollapsibleSection>
+
+          {/* ── Keyboard shortcuts hint ───────────────── */}
+          <button
+            onClick={() => setShowShortcuts(true)}
+            className="text-xs text-gray-500 hover:text-gray-300 transition-colors text-left flex items-center gap-1"
+          >
+            <span>⌨</span>
+            <span>Shortcuts</span>
+          </button>
+        </div>
+
+      {/* ── Right column ────────────────────────────────────────────────── */}
+      <div className="lg:w-[60%] flex flex-col gap-4 min-w-0">
+
+        {/* Suggestions header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-xl font-bold text-white">Suggestions</h2>
+            <p className="text-xs text-gray-400 mt-0.5">
+              {comps.length === 0
+                ? 'No comps saved'
+                : hasSelections
+                ? `${suggestions.length} comp${suggestions.length !== 1 ? 's' : ''} scored`
+                : `${suggestions.length} comp${suggestions.length !== 1 ? 's' : ''} ranked`}
+            </p>
+          </div>
+          <button
+            onClick={() => setShowWeights((v) => !v)}
+            className={`p-2 rounded transition-colors ${
+              showWeights
+                ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/40'
+                : 'bg-gray-700 text-gray-400 hover:bg-gray-600 border border-gray-600'
+            }`}
+            title="Scoring weights"
+          >
+            ⚙
+          </button>
+        </div>
+
+        {/* Weights panel */}
+        {showWeights && (
+          <Panel>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-semibold text-white">Scoring Weights</h3>
+              <button
+                onClick={() => setWeights(DEFAULT_WEIGHTS)}
+                className="text-xs text-gray-400 hover:text-yellow-400 transition-colors"
+              >
+                Reset
+              </button>
+            </div>
+            <div className="flex flex-col gap-3">
+              <WeightSlider
+                label="Champion match"
+                value={weights.directWeight}
+                min={0.1}
+                max={5.0}
+                onChange={(v) => setWeights({ directWeight: v })}
+              />
+              <WeightSlider
+                label="Trait overlap"
+                value={weights.traitWeight}
+                min={0.1}
+                max={3.0}
+                onChange={(v) => setWeights({ traitWeight: v })}
+              />
+              <WeightSlider
+                label="Item match"
+                value={weights.itemWeight}
+                min={0.1}
+                max={5.0}
+                onChange={(v) => setWeights({ itemWeight: v })}
+              />
+            </div>
+          </Panel>
+        )}
+
+        {/* ── Empty: no comps ───────────────────────── */}
+        {comps.length === 0 && (
+          <Panel>
+            <div className="py-10 text-center">
+              <p className="text-gray-400 mb-3">No comps saved yet.</p>
+              <Link
+                to="/comps"
+                className="px-4 py-2 rounded bg-yellow-500 text-gray-900 font-semibold hover:bg-yellow-400 transition-colors text-sm"
+              >
+                Go to Comp Manager
+              </Link>
+            </div>
+          </Panel>
+        )}
+
+        {/* ── Suggestion list ───────────────────────── */}
+        {suggestions.length > 0 && (
+          <div className="flex flex-col gap-3">
+            {suggestions.map((s) => {
+              const isExpanded = expandedCompId === s.comp.id
+              return (
+                <div key={s.comp.id} className="bg-gray-800 rounded-lg border border-gray-700 hover:border-gray-500 transition-colors">
+                  <CompCard
+                    comp={s.comp}
+                    onClick={() => toggleExpand(s.comp.id)}
+                    score={hasSelections ? s.finalScore : undefined}
+                    directRatio={hasSelections ? s.directRatio : undefined}
+                    traitRatio={hasSelections ? s.traitRatio : undefined}
+                    itemMatchRatio={hasSelections ? s.itemMatchRatio : undefined}
+                    matchedChampionIds={hasSelections ? s.matchedChampionIds : undefined}
+                    sharedTraitIds={hasSelections ? s.sharedTraitIds : undefined}
+                    championNames={championNames}
+                  />
+
+                  {/* Expanded detail */}
+                  {isExpanded && (
+                    <div className="px-4 pb-4">
+                      <CompDetail
+                        suggestion={s}
+                        championById={championById}
+                        itemById={itemById}
+                        selectedChampionIds={selectedChampionIds}
+                      />
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        )}
+
+        {/* No selections but comps exist: handled by suggestions being rank-sorted above */}
+        {comps.length > 0 && suggestions.length === 0 && (
+          <Panel>
+            <p className="text-gray-500 text-sm text-center py-6">
+              No suggestions available.
+            </p>
+          </Panel>
+        )}
+      </div>
+    </div>
+    </>
+  )
+}
