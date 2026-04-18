@@ -11,6 +11,17 @@ export const useSettingsStore = create<SettingsState>()(
       setWeights: (w) => set(state => ({ weights: { ...state.weights, ...w } })),
       setActiveSet: (setId) => set({ activeSetId: setId }),
     }),
-    { name: 'tft-settings' }
+    {
+      name: 'tft-settings',
+      // Merge persisted weights with defaults so new fields (e.g. godWeight) are always present
+      merge: (persisted, current) => ({
+        ...current,
+        ...(persisted as Partial<SettingsState>),
+        weights: {
+          ...DEFAULT_WEIGHTS,
+          ...((persisted as Partial<SettingsState>)?.weights ?? {}),
+        },
+      }),
+    }
   )
 )
