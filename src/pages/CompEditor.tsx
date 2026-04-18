@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useCompStore } from '../stores/compStore'
 import { useSetData } from '../hooks/useSetData'
 import { ALL_RANKS } from '../utils/ranks'
-import { getChampionIconUrl, getItemIconUrl } from '../utils/icons'
+import { getChampionIconUrl, getItemIconUrl, DUMMY_ICON_URL } from '../utils/icons'
 import { isDummy, newDummyId, DUMMY_ID_PREFIX } from '../utils/dummy'
 import type { Champion, CompChampion, CompletedItem, HexPosition, Rank, Trait } from '../types'
 
@@ -194,10 +194,11 @@ function DragDropBoard({
                 <>
                   {isDummy(cell.championId) ? (
                     <img
-                      src="https://raw.communitydragon.org/latest/game/assets/characters/petminigolem/hud/icon_minigolem_grey_tier1.png"
-                      alt="Dummy"
+                      src={DUMMY_ICON_URL}
+                      alt={cell.champion.name}
                       draggable={false}
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      onError={(e) => { e.currentTarget.style.display = 'none' }}
                     />
                   ) : (
                     <img
@@ -321,7 +322,7 @@ function ChampionPool({
           }}
         >
           <img
-            src="https://raw.communitydragon.org/latest/game/assets/characters/petminigolem/hud/icon_minigolem_grey_tier1.png"
+            src={DUMMY_ICON_URL}
             alt="Dummy"
             draggable={false}
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}

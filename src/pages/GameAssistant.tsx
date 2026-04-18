@@ -12,7 +12,7 @@ import CompCard from '../components/CompCard'
 import HexGrid from '../components/HexGrid'
 import CollapsibleSection from '../components/CollapsibleSection'
 import type { PlacedChampion } from '../components/HexGrid'
-import { getItemIconUrl } from '../utils/icons'
+import { getItemIconUrl, DUMMY_ICON_URL } from '../utils/icons'
 import { isDummy } from '../utils/dummy'
 import type { CompSuggestion, TeamComp } from '../types'
 
@@ -58,7 +58,6 @@ function WeightSlider({
   )
 }
 
-const DUMMY_ICON_URL = 'https://raw.communitydragon.org/latest/game/assets/characters/petminigolem/hud/icon_minigolem_grey_tier1.png'
 
 // ── Build HexGrid placements from a TeamComp ─────────────────────────────────
 function buildPlacements(
