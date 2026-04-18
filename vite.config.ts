@@ -7,4 +7,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    host: true,  // listen on all network interfaces (0.0.0.0)
+  },
 })

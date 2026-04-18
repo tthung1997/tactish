@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { TeamComp, CompStoreState } from '../types'
+import { generateId } from '../utils/uuid'
 
 export const useCompStore = create<CompStoreState>()(
   persist(
@@ -10,7 +11,7 @@ export const useCompStore = create<CompStoreState>()(
       addComp: (compData) => {
         const comp: TeamComp = {
           ...compData,
-          id: crypto.randomUUID(),
+          id: generateId(),
           createdAt: Date.now(),
           updatedAt: Date.now(),
         }
@@ -29,7 +30,7 @@ export const useCompStore = create<CompStoreState>()(
         if (!comp) return
         const duplicate: TeamComp = {
           ...comp,
-          id: crypto.randomUUID(),
+          id: generateId(),
           name: `${comp.name} (copy)`,
           createdAt: Date.now(),
           updatedAt: Date.now(),
@@ -49,7 +50,7 @@ export function seedSampleComps(): void {
 
   const samples: TeamComp[] = [
     {
-      id: crypto.randomUUID(),
+      id: generateId(),
       name: 'Dark Star Jhin',
       rank: 'S',
       notes: 'Jhin carry with IE + Last Whisper + Rabadon. Build Dark Star for execute power.',
@@ -67,7 +68,7 @@ export function seedSampleComps(): void {
       ],
     },
     {
-      id: crypto.randomUUID(),
+      id: generateId(),
       name: 'Meeple Party',
       rank: 'A',
       notes: 'Veigar carry with Jeweled Gauntlet. Poppy + Rammus frontline. Scale with Meeple trait.',
@@ -84,7 +85,7 @@ export function seedSampleComps(): void {
       ],
     },
     {
-      id: crypto.randomUUID(),
+      id: generateId(),
       name: 'Psionic Ops',
       rank: 'B+',
       notes: 'Viktor AP carry. Master Yi as secondary damage. Gragas + Pyke frontline.',
