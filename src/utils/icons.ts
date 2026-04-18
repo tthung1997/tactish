@@ -5,6 +5,9 @@ export function getChampionIconUrl(championId: string): string {
 
 /** Returns the local icon path for an item (base component or completed). */
 export function getItemIconUrl(itemId: string): string {
+  if (itemId.endsWith('-emblem')) {
+    return `/icons/emblems/${itemId.slice(0, -'-emblem'.length)}.png`
+  }
   return `/icons/items/${itemId}.png`
 }
 
