@@ -44,10 +44,20 @@ export interface CompletedItem {
   icon?: string
 }
 
-export type AnyItem = BaseComponent | CompletedItem
+export interface SpecialItem {
+  id: string          // e.g. "eternal-pact"
+  name: string        // e.g. "Eternal Pact"
+  category: 'artifact' | 'radiant'
+}
+
+export type AnyItem = BaseComponent | CompletedItem | SpecialItem
 
 export function isCompletedItem(item: AnyItem): item is CompletedItem {
   return 'components' in item
+}
+
+export function isSpecialItem(item: AnyItem): item is SpecialItem {
+  return 'category' in item
 }
 
 // ── User comp types (stored in localStorage) ─────────────────────────────────

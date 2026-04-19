@@ -5,7 +5,7 @@ import { useSetData } from '../hooks/useSetData'
 import { ALL_RANKS } from '../utils/ranks'
 import { getChampionIconUrl, getItemIconUrl, getGodIconUrl, DUMMY_ICON_URL } from '../utils/icons'
 import { isDummy, newDummyId, DUMMY_ID_PREFIX } from '../utils/dummy'
-import type { Champion, CompChampion, CompletedItem, HexPosition, Rank, Trait } from '../types'
+import type { Champion, CompChampion, CompletedItem, HexPosition, Rank, SpecialItem, Trait } from '../types'
 
 // ── Board geometry (pointy-top hexes, matches TFT layout) ─────────────────────
 const R    = 26
@@ -375,11 +375,56 @@ function ChampionPool({
 }
 
 // ── ItemPool ──────────────────────────────────────────────────────────────────
-function ItemPool({ items, onItemClick }: { items: CompletedItem[], onItemClick?: (itemId: string) => void }) {
+function ItemPool({
+  items,
+  artifactItems,
+  radiantItems,
+  onItemClick,
+}: {
+  items: CompletedItem[]
+  artifactItems: SpecialItem[]
+  radiantItems: SpecialItem[]
+  onItemClick?: (itemId: string) => void
+}) {
   const [search, setSearch] = useState('')
-  const filtered = search
-    ? items.filter((i) => i.name.toLowerCase().includes(search.toLowerCase()))
-    : items
+  const q = search.toLowerCase()
+  const filter = <T extends { name: string }>(arr: T[]): T[] =>
+    q ? arr.filter((i) => i.name.toLowerCase().includes(q)) : arr
+
+  const filteredItems     = filter(items)
+  const filteredArtifacts = filter(artifactItems)
+  const filteredRadiant   = filter(radiantItems)
+
+  function ItemTile({ id, name }: { id: string; name: string }) {
+    return (
+      <div
+        draggable
+        onDragStart={(e) => {
+          const p: DragPayload = { type: 'item', itemId: id }
+          currentDrag = p
+          e.dataTransfer.setData('text/plain', encDrag(p))
+          e.dataTransfer.effectAllowed = 'copy'
+        }}
+        onDragEnd={() => { currentDrag = null }}
+        onClick={() => onItemClick?.(id)}
+        title={name}
+        style={{
+          width: 36, height: 36, borderRadius: 4, overflow: 'hidden', flexShrink: 0,
+          border: '1px solid #4b5563',
+          cursor: onItemClick ? 'pointer' : 'grab',
+          background: '#1f2937',
+        }}
+      >
+        <img
+          src={getItemIconUrl(id)}
+          alt={name}
+          draggable={false}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          onError={(e) => { e.currentTarget.style.display = 'none' }}
+        />
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col gap-2 min-w-0" style={{ maxWidth: 260 }}>
@@ -393,37 +438,27 @@ function ItemPool({ items, onItemClick }: { items: CompletedItem[], onItemClick?
           className="bg-gray-800 border border-gray-700 text-white text-xs rounded px-2 py-1 w-28 focus:outline-none focus:border-blue-500"
         />
       </div>
-      <div className="flex flex-wrap gap-1">
-        {filtered.map((item) => (
-          <div
-            key={item.id}
-            draggable
-            onDragStart={(e) => {
-              const p: DragPayload = { type: 'item', itemId: item.id }
-              currentDrag = p
-              e.dataTransfer.setData('text/plain', encDrag(p))
-              e.dataTransfer.effectAllowed = 'copy'
-            }}
-            onDragEnd={() => { currentDrag = null }}
-            onClick={() => onItemClick?.(item.id)}
-            title={item.name}
-            style={{
-              width: 36, height: 36, borderRadius: 4, overflow: 'hidden', flexShrink: 0,
-              border: '1px solid #4b5563',
-              cursor: onItemClick ? 'pointer' : 'grab',
-              background: '#1f2937',
-            }}
-          >
-            <img
-              src={getItemIconUrl(item.id)}
-              alt={item.name}
-              draggable={false}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              onError={(e) => { e.currentTarget.style.display = 'none' }}
-            />
+      {filteredItems.length > 0 && (
+        <div className="flex flex-wrap gap-1">
+          {filteredItems.map((item) => <ItemTile key={item.id} id={item.id} name={item.name} />)}
+        </div>
+      )}
+      {filteredArtifacts.length > 0 && (
+        <>
+          <span className="text-xs text-gray-500 uppercase tracking-wide">Artifacts</span>
+          <div className="flex flex-wrap gap-1">
+            {filteredArtifacts.map((item) => <ItemTile key={item.id} id={item.id} name={item.name} />)}
           </div>
-        ))}
-      </div>
+        </>
+      )}
+      {filteredRadiant.length > 0 && (
+        <>
+          <span className="text-xs text-gray-500 uppercase tracking-wide">Radiant</span>
+          <div className="flex flex-wrap gap-1">
+            {filteredRadiant.map((item) => <ItemTile key={item.id} id={item.id} name={item.name} />)}
+          </div>
+        </>
+      )}
     </div>
   )
 }
@@ -431,23 +466,18 @@ function ItemPool({ items, onItemClick }: { items: CompletedItem[], onItemClick?
 // ── ItemSlotsPanel ────────────────────────────────────────────────────────────
 function ItemSlotsPanel({
   selected,
-  completedItems,
+  itemById,
   onItemDropToSlot,
   onItemClear,
   onCarryToggle,
 }: {
   selected: { championId: string; champion: Champion; cc: CompChampion } | null
-  completedItems: CompletedItem[]
+  itemById: Record<string, { id: string; name: string }>
   onItemDropToSlot: (championId: string, slot: number, itemId: string) => void
   onItemClear: (championId: string, slot: number) => void
   onCarryToggle: (championId: string, isCarry: boolean) => void
 }) {
   const [dragOverSlot, setDragOverSlot] = useState<number | null>(null)
-
-  const itemById = useMemo(
-    () => Object.fromEntries(completedItems.map((i) => [i.id, i])),
-    [completedItems],
-  )
 
   const emptySlot = (
     <div style={{
@@ -603,7 +633,7 @@ export default function CompEditor() {
   const isEdit = !!id
 
   const { comps, addComp, updateComp, deleteComp } = useCompStore()
-  const { champions, completedItems, championById, traitById, gods } = useSetData()
+  const { champions, completedItems, artifactItems, radiantItems, itemById, championById, traitById, gods } = useSetData()
 
   const existingComp = isEdit ? comps.find((c) => c.id === id) : undefined
 
@@ -824,7 +854,7 @@ export default function CompEditor() {
         </div>
         <ItemSlotsPanel
           selected={selectedData}
-          completedItems={completedItems}
+          itemById={itemById}
           onItemDropToSlot={handleItemDropToSlot}
           onItemClear={handleItemClear}
           onCarryToggle={handleCarryToggle}
@@ -878,6 +908,8 @@ export default function CompEditor() {
         />
         <ItemPool
           items={completedItems}
+          artifactItems={artifactItems}
+          radiantItems={radiantItems}
           onItemClick={selectedData ? (itemId) => handleItemDrop(selectedData.championId, itemId) : undefined}
         />
       </div>
