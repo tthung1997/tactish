@@ -1,0 +1,2390 @@
+[
+  {
+    "id": "godaugmentekko_ii",
+    "name": "Ekko's Boon",
+    "apiName": "TFT17_Augment_EkkoGodAugment",
+    "tier": "unknown"
+  },
+  {
+    "id": "godaugmentsoraka_ii",
+    "name": "Soraka's Boon",
+    "apiName": "TFT17_Augment_SorakaGodAugment",
+    "tier": "unknown"
+  },
+  {
+    "id": "animacommander_ii",
+    "name": "Anima Commander",
+    "apiName": "TFT17_Augment_AnimaSquad_Commander",
+    "tier": "unknown"
+  },
+  {
+    "id": "godaugmentaurelionsol_ii",
+    "name": "Aurelion Sol's Boon",
+    "apiName": "TFT17_Augment_AurelionSolGodAugment",
+    "tier": "unknown"
+  },
+  {
+    "id": "admin_armorery_icon",
+    "name": "Your team gains @SmallQuestADAP@ Attack Damage and Ability Power.",
+    "apiName": "TFT17_Augment_AurelionSolGodAugment_SmallQuest",
+    "tier": "unknown"
+  },
+  {
+    "id": "admin_armorery_icon",
+    "name": "After @MedQuestRounds@ player combats, gain a completed item anvil and @MedQuestGold@ gold.",
+    "apiName": "TFT17_Augment_AurelionSolGodAugment_MediumQuest",
+    "tier": "unknown"
+  },
+  {
+    "id": "admin_armorery_icon",
+    "name": "After @LargeQuestRounds@ player combats, gain +1 to all non-unique traits.",
+    "apiName": "TFT17_Augment_AurelionSolGodAugment_LargeQuest",
+    "tier": "unknown"
+  },
+  {
+    "id": "starconqueror_ii",
+    "name": "Heat Death",
+    "apiName": "TFT17_Augment_MordekaiserCarry",
+    "tier": "unknown"
+  },
+  {
+    "id": "invaderzed_ii",
+    "name": "Invader Zed",
+    "apiName": "TFT17_Augment_InvaderZed",
+    "tier": "unknown"
+  },
+  {
+    "id": "godaugmentahri_ii",
+    "name": "Ahri's Boon",
+    "apiName": "TFT17_Augment_AhriGodAugment",
+    "tier": "unknown"
+  },
+  {
+    "id": "aatroxhero_i",
+    "name": "Stellar Combo",
+    "apiName": "TFT17_Augment_AatroxCarry",
+    "tier": "unknown"
+  },
+  {
+    "id": "sharespotlight2",
+    "name": "Yasuo's Share The Spotlight",
+    "apiName": "TFT17_Augment_YasuoGodAugment_MoreHexes",
+    "tier": "unknown"
+  },
+  {
+    "id": "poppyhero_i",
+    "name": "Termeepnal Velocity",
+    "apiName": "TFT17_Augment_PoppyCarry",
+    "tier": "unknown"
+  },
+  {
+    "id": "meepspace9_ii",
+    "name": "The Big Bang",
+    "apiName": "TFT17_Augment_IvernMinionCarry",
+    "tier": "unknown"
+  },
+  {
+    "id": "contractkiller_ii",
+    "name": "Contract Killer",
+    "apiName": "TFT17_Augment_PykeCarry",
+    "tier": "unknown"
+  },
+  {
+    "id": "findyourcenter_i",
+    "name": "Yasuo's Golden Hex",
+    "apiName": "TFT17_Augment_YasuoGodAugment_GoldenHex",
+    "tier": "unknown"
+  },
+  {
+    "id": "godaugmentthresh_ii",
+    "name": "Thresh's Boon",
+    "apiName": "TFT17_Augment_ThreshGodAugment",
+    "tier": "unknown"
+  },
+  {
+    "id": "reachforthestars_ii",
+    "name": "Reach for the Stars",
+    "apiName": "TFT17_Augment_JaxCarry",
+    "tier": "unknown"
+  },
+  {
+    "id": "snipersnest2",
+    "name": "Sniper's Nest",
+    "apiName": "TFT17_Augment_SnipersNest",
+    "tier": "unknown"
+  },
+  {
+    "id": "job_s-done-ii",
+    "name": "Apotheotic Forge",
+    "apiName": "TFT17_Augment_ApotheoticForge",
+    "tier": "unknown"
+  },
+  {
+    "id": "shepherdssong_ii",
+    "name": "Shepherd's Song",
+    "apiName": "TFT17_Augment_ShepherdAugment",
+    "tier": "unknown"
+  },
+  {
+    "id": "godaugmentevelynn_ii",
+    "name": "Evelynn's Boon",
+    "apiName": "TFT17_Augment_EvelynnGodAugment",
+    "tier": "unknown"
+  },
+  {
+    "id": "bonk_i",
+    "name": "Bonk!",
+    "apiName": "TFT17_Augment_NasusCarry",
+    "tier": "unknown"
+  },
+  {
+    "id": "godaugmentkayle_ii",
+    "name": "Kayle's Boon",
+    "apiName": "TFT17_Augment_KayleGodAugment",
+    "tier": "unknown"
+  },
+  {
+    "id": "godaugmentyasuo_ii",
+    "name": "Yasuo's Boon",
+    "apiName": "TFT17_Augment_YasuoGodAugment_PaintedPower",
+    "tier": "unknown"
+  },
+  {
+    "id": "selfdestruct_ii",
+    "name": "Self Destruct",
+    "apiName": "TFT17_Augment_GragasCarry",
+    "tier": "unknown"
+  },
+  {
+    "id": "godaugmentvarus_ii",
+    "name": "Varus's Boon",
+    "apiName": "TFT17_Augment_VarusGodAugment_BoonOfStars",
+    "tier": "unknown"
+  },
+  {
+    "id": "liftingcompetition_ii",
+    "name": "Lift Off",
+    "apiName": "TFT17_Augment_Weightlifting",
+    "tier": "unknown"
+  },
+  {
+    "id": "tft_augment_changeling_glamouritemtier4",
+    "name": "Changing Glamour",
+    "apiName": "TFT_Augment_Changeling_GlamourItemTier4",
+    "tier": "unknown"
+  },
+  {
+    "id": "tft_augment_changeling_glamouritemtier5",
+    "name": "Changing Glamour",
+    "apiName": "TFT_Augment_Changeling_GlamourItemTier5",
+    "tier": "unknown"
+  },
+  {
+    "id": "tft_augment_changeling_glamouritemtier2",
+    "name": "Changing Glamour",
+    "apiName": "TFT_Augment_Changeling_GlamourItemTier2",
+    "tier": "gold"
+  },
+  {
+    "id": "tft_augment_changeling_glamouritemtier3",
+    "name": "Changing Glamour",
+    "apiName": "TFT_Augment_Changeling_GlamourItemTier3",
+    "tier": "prismatic"
+  },
+  {
+    "id": "tft_augment_changeling_glamouritemtier1",
+    "name": "Changing Glamour",
+    "apiName": "TFT_Augment_Changeling_GlamourItemTier1",
+    "tier": "silver"
+  },
+  {
+    "id": "tft_item_unusableslot",
+    "name": "All Done<br><tftitemrules>Stop transforming, and allow me to star up</tftitemrules>",
+    "apiName": "TFT_Augment_GrowingUp_SkipOption",
+    "tier": "unknown"
+  },
+  {
+    "id": "all-that-shimmers-ii",
+    "name": "All That Shimmers+",
+    "apiName": "TFT_Augment_AllThatShimmersPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "itemcollector_ii",
+    "name": "Item Collector II",
+    "apiName": "TFT_Augment_ItemCollector2",
+    "tier": "gold"
+  },
+  {
+    "id": "itemcollector_i",
+    "name": "Item Collector I",
+    "apiName": "TFT_Augment_ItemCollector1",
+    "tier": "silver"
+  },
+  {
+    "id": "superstars_i",
+    "name": "Superstars I",
+    "apiName": "TFT_Augment_SuperstarsSilver",
+    "tier": "unknown"
+  },
+  {
+    "id": "retribution_iii",
+    "name": "Retribution",
+    "apiName": "TFT_Augment_Retribution",
+    "tier": "unknown"
+  },
+  {
+    "id": "minmax_iii",
+    "name": "Min-Max",
+    "apiName": "TFT_Augment_MinMaxer",
+    "tier": "unknown"
+  },
+  {
+    "id": "indecisioni_ii",
+    "name": "Indecision II",
+    "apiName": "TFT_Augment_Indecision2",
+    "tier": "gold"
+  },
+  {
+    "id": "arcaneviktory_ii",
+    "name": "Arcane Viktor-y",
+    "apiName": "TFT_Augment_ArcaneViktory",
+    "tier": "unknown"
+  },
+  {
+    "id": "waterlotus_ii",
+    "name": "Water Lotus I",
+    "apiName": "TFT_Augment_WaterLotus1",
+    "tier": "silver"
+  },
+  {
+    "id": "epicrolldown_ii",
+    "name": "Epic Rolldown",
+    "apiName": "TFT_Augment_EpicRolldown",
+    "tier": "unknown"
+  },
+  {
+    "id": "maxbuild_ii",
+    "name": "Max Build",
+    "apiName": "TFT_Augment_MaxBuild",
+    "tier": "unknown"
+  },
+  {
+    "id": "firesale_i",
+    "name": "Firesale",
+    "apiName": "TFT_Augment_FiresalePlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "spreadingroots_ii",
+    "name": "Spreading Roots",
+    "apiName": "TFT_Augment_SpreadingRoots",
+    "tier": "unknown"
+  },
+  {
+    "id": "indecisioni_ii",
+    "name": "Indecision I",
+    "apiName": "TFT_Augment_Indecision1",
+    "tier": "silver"
+  },
+  {
+    "id": "survivor_i",
+    "name": "Survivor",
+    "apiName": "TFT_Augment_Survivor",
+    "tier": "unknown"
+  },
+  {
+    "id": "support-sentinel-iii",
+    "name": "Support Golem II",
+    "apiName": "TFT_Augment_SupportSentinel2",
+    "tier": "gold"
+  },
+  {
+    "id": "marksmanstoolbox_iii",
+    "name": "Marksman's Toolbox",
+    "apiName": "TFT_Augment_MarksmansToolbox",
+    "tier": "unknown"
+  },
+  {
+    "id": "smallgrabbag_i",
+    "name": "Small Grab Bag",
+    "apiName": "TFT_Augment_SmallGrabBag",
+    "tier": "unknown"
+  },
+  {
+    "id": "bulkingup_i",
+    "name": "Bulking Up I",
+    "apiName": "TFT_Augment_BulkingUp1",
+    "tier": "silver"
+  },
+  {
+    "id": "unforgotten_ii",
+    "name": "Warlord's Honor",
+    "apiName": "TFT_Augment_Unforgotten",
+    "tier": "unknown"
+  },
+  {
+    "id": "bulkingup_ii",
+    "name": "Bulking Up II",
+    "apiName": "TFT_Augment_BulkingUp2",
+    "tier": "gold"
+  },
+  {
+    "id": "lightningstrike_ii",
+    "name": "Lightning Strike",
+    "apiName": "TFT_Augment_LightningStrike",
+    "tier": "unknown"
+  },
+  {
+    "id": "itemrefresh_ii",
+    "name": "Item Refresh",
+    "apiName": "TFT_Augment_ItemRefresh",
+    "tier": "unknown"
+  },
+  {
+    "id": "tacticianskitchen_iii",
+    "name": "Tactician's Kitchen",
+    "apiName": "TFT_Augment_TacticiansKitchen",
+    "tier": "unknown"
+  },
+  {
+    "id": "support-mining-i",
+    "name": "Support Mining+",
+    "apiName": "TFT_Augment_SupportMiningPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "bigones_ii",
+    "name": "Big Ones",
+    "apiName": "TFT_Augment_BigOnes",
+    "tier": "unknown"
+  },
+  {
+    "id": "giantandmighty_iii",
+    "name": "Giant and Mighty",
+    "apiName": "TFT_Augment_GiantAndMighty",
+    "tier": "unknown"
+  },
+  {
+    "id": "edgy-iii",
+    "name": "Close Quarters",
+    "apiName": "TFT_Augment_CloseQuarters",
+    "tier": "unknown"
+  },
+  {
+    "id": "replication-ii",
+    "name": "Replication",
+    "apiName": "TFT_Augment_Replication",
+    "tier": "unknown"
+  },
+  {
+    "id": "instantgratification_i",
+    "name": "Instant Gratification",
+    "apiName": "TFT_Augment_InstantGratification",
+    "tier": "unknown"
+  },
+  {
+    "id": "trifecta-ii",
+    "name": "Trifecta I",
+    "apiName": "TFT_Augment_Trifecta1_Set7",
+    "tier": "unknown"
+  },
+  {
+    "id": "oopsallrageblades_iii",
+    "name": "Anger Issues",
+    "apiName": "TFT_Augment_OopsAllRageblades",
+    "tier": "unknown"
+  },
+  {
+    "id": "dummify_i",
+    "name": "Dummify",
+    "apiName": "TFT_Augment_Dummify",
+    "tier": "unknown"
+  },
+  {
+    "id": "braggingrights_ii",
+    "name": "Bragging Rights",
+    "apiName": "TFT_Augment_BraggingRights",
+    "tier": "unknown"
+  },
+  {
+    "id": "tricksterstreat_iii",
+    "name": "Trickster's Treat",
+    "apiName": "TFT_Augment_TrickstersGlassAugment",
+    "tier": "unknown"
+  },
+  {
+    "id": "patienceisavirtue_i",
+    "name": "Patience is a Virtue",
+    "apiName": "TFT_Augment_PatienceIsAVirtue",
+    "tier": "unknown"
+  },
+  {
+    "id": "deadliercaps_ii",
+    "name": "Deadlier Caps",
+    "apiName": "TFT_Augment_DeadlierCaps",
+    "tier": "unknown"
+  },
+  {
+    "id": "unleashthebeast_ii",
+    "name": "Unleash The Beast",
+    "apiName": "TFT_Augment_UnleashTheBeast",
+    "tier": "unknown"
+  },
+  {
+    "id": "powerup_i",
+    "name": "Augmented Power",
+    "apiName": "TFT_Augment_PowerUp",
+    "tier": "unknown"
+  },
+  {
+    "id": "endlessconflagration_ii",
+    "name": "Endless Conflagration",
+    "apiName": "TFT_Augment_EndlessConflagration",
+    "tier": "unknown"
+  },
+  {
+    "id": "foodfighttactics_ii",
+    "name": "Mess Hall",
+    "apiName": "TFT_Augment_FoodfightTactics",
+    "tier": "unknown"
+  },
+  {
+    "id": "thebaronslair_iii.tft_16_4",
+    "name": "Baron's Lair",
+    "apiName": "TFT_Augment_TheBaronsLair",
+    "tier": "unknown"
+  },
+  {
+    "id": "winout_iii",
+    "name": "Win Out",
+    "apiName": "TFT_Augment_WinOut",
+    "tier": "unknown"
+  },
+  {
+    "id": "criticalsuccess_i",
+    "name": "Critical Success",
+    "apiName": "TFT_Augment_ComponentQuestGlove_PAIRS",
+    "tier": "unknown"
+  },
+  {
+    "id": "reroll-transfer-i",
+    "name": "Reroll Transfer",
+    "apiName": "TFT_Augment_RerollTransfer",
+    "tier": "unknown"
+  },
+  {
+    "id": "bronzeforlife_iii",
+    "name": "Bronze For Life II",
+    "apiName": "TFT_Augment_BronzeForLife2",
+    "tier": "gold"
+  },
+  {
+    "id": "frontlinefoundation_ii",
+    "name": "Frontline Foundation",
+    "apiName": "TFT_Augment_FrontlineFoundation",
+    "tier": "unknown"
+  },
+  {
+    "id": "spellsword-ii",
+    "name": "Spellsword",
+    "apiName": "TFT_Augment_Spellsword",
+    "tier": "unknown"
+  },
+  {
+    "id": "will-of-the-crown-ii",
+    "name": "Crown's Will",
+    "apiName": "TFT_Augment_CrownguardSpirit",
+    "tier": "unknown"
+  },
+  {
+    "id": "trifecta-ii",
+    "name": "Trifecta I",
+    "apiName": "TFT_Augment_Trifecta1",
+    "tier": "silver"
+  },
+  {
+    "id": "earlylearning_ii",
+    "name": "Early Learnings",
+    "apiName": "TFT_Augment_EarlyLearning",
+    "tier": "unknown"
+  },
+  {
+    "id": "support-mining-i",
+    "name": "Support Mining",
+    "apiName": "TFT_Augment_SupportMining",
+    "tier": "unknown"
+  },
+  {
+    "id": "tombraider_iii",
+    "name": "Tomb Raider II",
+    "apiName": "TFT_Augment_TombRaider2",
+    "tier": "gold"
+  },
+  {
+    "id": "growthmindset_iii",
+    "name": "Growth Mindset",
+    "apiName": "TFT_Augment_GrowthMindset",
+    "tier": "unknown"
+  },
+  {
+    "id": "health-is-wealth-ii",
+    "name": "Health is Wealth II",
+    "apiName": "TFT_Augment_WealthyRehab2",
+    "tier": "gold"
+  },
+  {
+    "id": "flurryofblows_iii",
+    "name": "Flurry of Blows",
+    "apiName": "TFT_Augment_FlurryOfBlows",
+    "tier": "unknown"
+  },
+  {
+    "id": "backlineblueprint_ii",
+    "name": "Backline Blueprint",
+    "apiName": "TFT_Augment_BacklineBlueprint",
+    "tier": "unknown"
+  },
+  {
+    "id": "health-is-wealth-i",
+    "name": "Health is Wealth I",
+    "apiName": "TFT_Augment_WealthyRehab1",
+    "tier": "silver"
+  },
+  {
+    "id": "parentingfordummies_iii",
+    "name": "Scapegoat",
+    "apiName": "TFT_Augment_ParentingForDummies",
+    "tier": "unknown"
+  },
+  {
+    "id": "prismaticdestiny_iii",
+    "name": "Prismatic Destiny+",
+    "apiName": "TFT_Augment_PrismaticDestinyPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "prismaticpipeline_iii",
+    "name": "Prismatic Pipeline",
+    "apiName": "TFT_Augment_PrismaticPipeline",
+    "tier": "unknown"
+  },
+  {
+    "id": "trifecta-iii",
+    "name": "Trifecta II",
+    "apiName": "TFT_Augment_Trifecta2",
+    "tier": "gold"
+  },
+  {
+    "id": "chaosevolution_i",
+    "name": "Chaotic Evolution",
+    "apiName": "TFT_Augment_ChaosEvolution",
+    "tier": "unknown"
+  },
+  {
+    "id": "cognitivetax_i",
+    "name": "Cognitive Tax",
+    "apiName": "TFT_Augment_CognitiveTax",
+    "tier": "unknown"
+  },
+  {
+    "id": "tombraider_ii",
+    "name": "Tomb Raider I",
+    "apiName": "TFT_Augment_TombRaider1",
+    "tier": "silver"
+  },
+  {
+    "id": "onebufftwobuff_iii",
+    "name": "One Buff, Two Buff",
+    "apiName": "TFT_Augment_OneBuffTwoBuff",
+    "tier": "unknown"
+  },
+  {
+    "id": "glasscannon_i",
+    "name": "Glass Cannon I",
+    "apiName": "TFT_Augment_GlassCannonI",
+    "tier": "unknown"
+  },
+  {
+    "id": "crossfire_i",
+    "name": "Crossfire",
+    "apiName": "TFT_Augment_Crossfire1",
+    "tier": "silver"
+  },
+  {
+    "id": "piercing-lotus-iii",
+    "name": "Piercing Lotus II",
+    "apiName": "TFT_Augment_PiercingLotus2",
+    "tier": "gold"
+  },
+  {
+    "id": "satedspellweaver_ii",
+    "name": "Sated Spellweaver",
+    "apiName": "TFT_Augment_SatedSpellweaver",
+    "tier": "unknown"
+  },
+  {
+    "id": "heroiceulogy_ii",
+    "name": "Heroic Eulogy",
+    "apiName": "TFT_Augment_HeroicEulogy",
+    "tier": "unknown"
+  },
+  {
+    "id": "piercing-lotus-ii",
+    "name": "Piercing Lotus I",
+    "apiName": "TFT_Augment_PiercingLotus1",
+    "tier": "silver"
+  },
+  {
+    "id": "crossfire_ii",
+    "name": "Piercing Sight",
+    "apiName": "TFT_Augment_Crossfire2",
+    "tier": "gold"
+  },
+  {
+    "id": "cognitivetax_i",
+    "name": "Cognitive Tax+",
+    "apiName": "TFT_Augment_CognitiveTaxPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "manaflow_i",
+    "name": "Manaflow I",
+    "apiName": "TFT_Augment_Manaflow1",
+    "tier": "silver"
+  },
+  {
+    "id": "manaflow_ii",
+    "name": "Manaflow II",
+    "apiName": "TFT_Augment_Manaflow2",
+    "tier": "gold"
+  },
+  {
+    "id": "maxcap_iii",
+    "name": "Max Cap",
+    "apiName": "TFT_Augment_MaxCap",
+    "tier": "unknown"
+  },
+  {
+    "id": "isekai_iii",
+    "name": "Isekai",
+    "apiName": "TFT_Augment_Isekai_Sorcerer",
+    "tier": "unknown"
+  },
+  {
+    "id": "upwardmobility_iii",
+    "name": "Upward Mobility",
+    "apiName": "TFT_Augment_UpwardMobility",
+    "tier": "unknown"
+  },
+  {
+    "id": "isekai_iii",
+    "name": "Isekai",
+    "apiName": "TFT_Augment_Isekai",
+    "tier": "unknown"
+  },
+  {
+    "id": "blossoming-lotus-iii",
+    "name": "Blossoming Lotus II",
+    "apiName": "TFT_Augment_BlossomingLotus2",
+    "tier": "gold"
+  },
+  {
+    "id": "anotherone_ii",
+    "name": "Another One!",
+    "apiName": "TFT_Augment_AnotherOne",
+    "tier": "unknown"
+  },
+  {
+    "id": "hallofmirrors_iii",
+    "name": "Hall of Mirrors",
+    "apiName": "TFT_Augment_HallOfMirrors",
+    "tier": "unknown"
+  },
+  {
+    "id": "blossoming-lotus-ii",
+    "name": "Blossoming Lotus I",
+    "apiName": "TFT_Augment_BlossomingLotus1",
+    "tier": "silver"
+  },
+  {
+    "id": "explosivegrowth_ii",
+    "name": "Explosive Growth+",
+    "apiName": "TFT_Augment_ExplosiveGrowthPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "aimforthetop_ii",
+    "name": "Aim For The Top!",
+    "apiName": "TFT_Augment_AimForTheTop",
+    "tier": "unknown"
+  },
+  {
+    "id": "riggedshop_i",
+    "name": "Rigged Shop+",
+    "apiName": "TFT_Augment_RiggedShopPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "silverdestiny_i",
+    "name": "Silver Destiny",
+    "apiName": "TFT_Augment_SilverDestiny",
+    "tier": "unknown"
+  },
+  {
+    "id": "explosivegrowth_ii",
+    "name": "Explosive Growth",
+    "apiName": "TFT_Augment_ExplosiveGrowth",
+    "tier": "unknown"
+  },
+  {
+    "id": "towerdefense_ii",
+    "name": "Tower Defense",
+    "apiName": "TFT_Augment_TowerDefense",
+    "tier": "unknown"
+  },
+  {
+    "id": "precisiongrace_ii",
+    "name": "Precision and Grace",
+    "apiName": "TFT_Augment_ChallengerDash",
+    "tier": "unknown"
+  },
+  {
+    "id": "psychicforge_ii",
+    "name": "Psychic Forge",
+    "apiName": "TFT_Augment_PsychicForge",
+    "tier": "unknown"
+  },
+  {
+    "id": "starrynight_ii",
+    "name": "Starry Night+",
+    "apiName": "TFT_Augment_StarryNightPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "silverdestiny_i",
+    "name": "Silver Destiny+",
+    "apiName": "TFT_Augment_SilverDestinyPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "heavyisthecrown_ii",
+    "name": "Heavy Is the Crown",
+    "apiName": "TFT_Augment_HeavyIsTheCrown",
+    "tier": "unknown"
+  },
+  {
+    "id": "hardcommit_iii",
+    "name": "Hard Commit",
+    "apiName": "TFT_Augment_HardCommit",
+    "tier": "unknown"
+  },
+  {
+    "id": "seraphimsstaff_ii",
+    "name": "Seraphim's Staff",
+    "apiName": "TFT_Augment_SeraphimsStaff",
+    "tier": "unknown"
+  },
+  {
+    "id": "grouphug2_ii",
+    "name": "Group Hug II",
+    "apiName": "TFT_Augment_GroupHug2",
+    "tier": "gold"
+  },
+  {
+    "id": "lastsecondsave_ii",
+    "name": "Last Second Save",
+    "apiName": "TFT_Augment_LastSecondSave",
+    "tier": "unknown"
+  },
+  {
+    "id": "questfortheseven_ii",
+    "name": "A Story of Seven",
+    "apiName": "TFT_Augment_StoryOfSeven",
+    "tier": "unknown"
+  },
+  {
+    "id": "howlinggale_ii",
+    "name": "Howling Gale",
+    "apiName": "TFT_Augment_HowlingGale",
+    "tier": "unknown"
+  },
+  {
+    "id": "grouphug1_i",
+    "name": "Group Hug I",
+    "apiName": "TFT_Augment_GroupHug1",
+    "tier": "silver"
+  },
+  {
+    "id": "wovenmagic_iii",
+    "name": "Woven Magic",
+    "apiName": "TFT_Augment_TheVidalion",
+    "tier": "unknown"
+  },
+  {
+    "id": "expedition_i",
+    "name": "Expedition",
+    "apiName": "TFT_Augment_Expedition",
+    "tier": "unknown"
+  },
+  {
+    "id": "thetraittree_iii",
+    "name": "The Trait Tree+",
+    "apiName": "TFT_Augment_TraitTreePlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "pirates3",
+    "name": "Pirates",
+    "apiName": "TFT_Augment_Pirates3",
+    "tier": "prismatic"
+  },
+  {
+    "id": "isekai_iii",
+    "name": "Isekai",
+    "apiName": "TFT_Augment_Isekai_Strategist",
+    "tier": "unknown"
+  },
+  {
+    "id": "tablescraps_i",
+    "name": "Table Scraps",
+    "apiName": "TFT_Augment_TableScraps",
+    "tier": "unknown"
+  },
+  {
+    "id": "climbtheladder_ii",
+    "name": "Climb The Ladder II",
+    "apiName": "TFT_Augment_ClimbTheLadder2",
+    "tier": "gold"
+  },
+  {
+    "id": "agoldenquest_ii",
+    "name": "A Golden Quest",
+    "apiName": "TFT_Augment_GoldenQuest",
+    "tier": "unknown"
+  },
+  {
+    "id": "climbtheladder_i",
+    "name": "Climb The Ladder I",
+    "apiName": "TFT_Augment_ClimbTheLadder1",
+    "tier": "silver"
+  },
+  {
+    "id": "goldendestiny_ii",
+    "name": "Gold Destiny",
+    "apiName": "TFT_Augment_GoldDestiny",
+    "tier": "unknown"
+  },
+  {
+    "id": "final-resistance-i",
+    "name": "Final Resistance",
+    "apiName": "TFT_Augment_FinalResistance",
+    "tier": "unknown"
+  },
+  {
+    "id": "diversifiedportfolio1_i",
+    "name": "Diversified Portfolio+",
+    "apiName": "TFT_Augment_DiversifiedPortfolio2",
+    "tier": "gold"
+  },
+  {
+    "id": "riggedshop_i",
+    "name": "Rigged Shop",
+    "apiName": "TFT_Augment_RiggedShop",
+    "tier": "unknown"
+  },
+  {
+    "id": "coronation_iii",
+    "name": "Coronation",
+    "apiName": "TFT_Augment_Coronation",
+    "tier": "unknown"
+  },
+  {
+    "id": "diversifiedportfolio_i",
+    "name": "Diversified Portfolio",
+    "apiName": "TFT_Augment_DiversifiedPortfolio1",
+    "tier": "silver"
+  },
+  {
+    "id": "gildedsteel_ii.tft_16_4",
+    "name": "Gilded Steel",
+    "apiName": "TFT_Augment_GildedSteel",
+    "tier": "unknown"
+  },
+  {
+    "id": "spellblades_ii",
+    "name": "Spellblades",
+    "apiName": "TFT_Augment_Spellblades",
+    "tier": "unknown"
+  },
+  {
+    "id": "ninelives_iii",
+    "name": "Nine Lives",
+    "apiName": "TFT_Augment_NineLives",
+    "tier": "unknown"
+  },
+  {
+    "id": "worththewait_ii",
+    "name": "Worth the Wait",
+    "apiName": "TFT_Augment_WorthTheWaitGold",
+    "tier": "unknown"
+  },
+  {
+    "id": "branching-out-i",
+    "name": "Branching Out+",
+    "apiName": "TFT_Augment_BranchingOutPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "chemtechoverdrive_iii",
+    "name": "Chemtech Overdrive",
+    "apiName": "TFT_Augment_ChemtechOverdrive",
+    "tier": "unknown"
+  },
+  {
+    "id": "rodsmith_ii",
+    "name": "Staffsmith",
+    "apiName": "TFT_Augment_ForgeRod",
+    "tier": "unknown"
+  },
+  {
+    "id": "addicted-to-rolling-iii",
+    "name": "Expected Unexpectedness",
+    "apiName": "TFT_Augment_ExpectedUnexpectedness",
+    "tier": "unknown"
+  },
+  {
+    "id": "dominance_iii",
+    "name": "Dominance",
+    "apiName": "TFT_Augment_Dominance3",
+    "tier": "prismatic"
+  },
+  {
+    "id": "petricitearmor_i",
+    "name": "Petricite Armor I",
+    "apiName": "TFT_Augment_PetriciteArmorI",
+    "tier": "unknown"
+  },
+  {
+    "id": "placebo_i",
+    "name": "Placebo+",
+    "apiName": "TFT_Augment_PlaceboPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "spiritlink_iii",
+    "name": "Spirit Link II",
+    "apiName": "TFT_Augment_SpiritLink2",
+    "tier": "gold"
+  },
+  {
+    "id": "firesale_i",
+    "name": "Firesale",
+    "apiName": "TFT_Augment_Firesale",
+    "tier": "unknown"
+  },
+  {
+    "id": "quietquitting_ii",
+    "name": "Quiet Quitting",
+    "apiName": "TFT_Augment_QuietQuitting",
+    "tier": "unknown"
+  },
+  {
+    "id": "void-swarm-iii",
+    "name": "Void Swarm",
+    "apiName": "TFT_Augment_VoidborneHR",
+    "tier": "unknown"
+  },
+  {
+    "id": "holdtheline_iii",
+    "name": "Hold the Line",
+    "apiName": "TFT_Augment_HoldTheLine",
+    "tier": "unknown"
+  },
+  {
+    "id": "tacticianskitchen_iii",
+    "name": "Tactician's Kitchen",
+    "apiName": "TFT_Augment_TacticiansKitchen_HR",
+    "tier": "unknown"
+  },
+  {
+    "id": "spiritlink_ii",
+    "name": "Spirit Link",
+    "apiName": "TFT_Augment_SpiritLink1",
+    "tier": "silver"
+  },
+  {
+    "id": "heftyrolls_ii",
+    "name": "Hefty Rolls",
+    "apiName": "TFT_Augment_HeftyRolls",
+    "tier": "unknown"
+  },
+  {
+    "id": "feedtheflames_ii",
+    "name": "Feed the Flames",
+    "apiName": "TFT_Augment_FeedTheFlames",
+    "tier": "unknown"
+  },
+  {
+    "id": "beggarscanbechoosers_i",
+    "name": "Beggars Can Be Choosers",
+    "apiName": "TFT_Augment_BeggarsCanBeChoosers",
+    "tier": "unknown"
+  },
+  {
+    "id": "invested-iii",
+    "name": "Invested",
+    "apiName": "TFT_Augment_Invested",
+    "tier": "unknown"
+  },
+  {
+    "id": "support-sentinel-ii",
+    "name": "Support Golem I",
+    "apiName": "TFT_Augment_SupportSentinel",
+    "tier": "unknown"
+  },
+  {
+    "id": "contested_ii",
+    "name": "Contested",
+    "apiName": "TFT_Augment_Contested",
+    "tier": "unknown"
+  },
+  {
+    "id": "blazing-soul-iii",
+    "name": "Blazing Soul II",
+    "apiName": "TFT_Augment_BlazingSoul2",
+    "tier": "gold"
+  },
+  {
+    "id": "goldendestiny_ii",
+    "name": "Gold Destiny+",
+    "apiName": "TFT_Augment_GoldDestinyPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "moneyhungry2_ii",
+    "name": "Money Hungry+",
+    "apiName": "TFT_Augment_MoneyHungryPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "trickmirror_ii",
+    "name": "Cloning Facility",
+    "apiName": "TFT_Augment_CloningFacility",
+    "tier": "unknown"
+  },
+  {
+    "id": "hardbargain_ii",
+    "name": "Hard Bargain",
+    "apiName": "TFT_Augment_HardBargain",
+    "tier": "unknown"
+  },
+  {
+    "id": "goldengamble_iii",
+    "name": "Golden Gamble",
+    "apiName": "TFT_Augment_GoldenGamble",
+    "tier": "unknown"
+  },
+  {
+    "id": "tft12_ravenous_lightsnack",
+    "name": "Training Manual",
+    "apiName": "TFT_Augment_ExpensiveHamburger_Item",
+    "tier": "unknown"
+  },
+  {
+    "id": "backupdancers_ii",
+    "name": "Backup Dancers",
+    "apiName": "TFT_Augment_BackupDancers",
+    "tier": "unknown"
+  },
+  {
+    "id": "twomuchvalue_ii",
+    "name": "Two Much Value",
+    "apiName": "TFT_Augment_TwoMuchValue",
+    "tier": "unknown"
+  },
+  {
+    "id": "heroic-grab-bag-ii",
+    "name": "Heroic Grab Bag+",
+    "apiName": "TFT_Augment_HeroicGrabBagPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "waitforit_ii",
+    "name": "Wait For It",
+    "apiName": "TFT_Augment_WaitForIt",
+    "tier": "unknown"
+  },
+  {
+    "id": "recurvewrecker_i",
+    "name": "Backup Bows",
+    "apiName": "TFT_Augment_ComponentQuestBow",
+    "tier": "unknown"
+  },
+  {
+    "id": "sharespotlight3",
+    "name": "Share the Spotlight",
+    "apiName": "TFT_Augment_ShareTheSpotlight",
+    "tier": "unknown"
+  },
+  {
+    "id": "questinghero_iii",
+    "name": "Questing Hero",
+    "apiName": "TFT_Augment_QuestingHero",
+    "tier": "unknown"
+  },
+  {
+    "id": "plotarmor_ii",
+    "name": "Plot Armor",
+    "apiName": "TFT_Augment_PlotArmor",
+    "tier": "unknown"
+  },
+  {
+    "id": "anupgradedadventure_iii",
+    "name": "An Upgraded Adventure",
+    "apiName": "TFT_Augment_AnUpgradedJourney",
+    "tier": "unknown"
+  },
+  {
+    "id": "pocketrecombulator_i",
+    "name": "Pocket Recombobulator",
+    "apiName": "TFT_Augment_PocketRecombobulator",
+    "tier": "unknown"
+  },
+  {
+    "id": "pageofswords_i",
+    "name": "Page of Swords",
+    "apiName": "TFT_Augment_PageOfSwords",
+    "tier": "unknown"
+  },
+  {
+    "id": "healthygains_ii",
+    "name": "Heart of Steel",
+    "apiName": "TFT_Augment_WarmogsBuckle",
+    "tier": "unknown"
+  },
+  {
+    "id": "chargetransfer1_i",
+    "name": "Charge Transfer I",
+    "apiName": "TFT_Augment_ChargeTransfer1",
+    "tier": "silver"
+  },
+  {
+    "id": "heroic-grab-bag-ii",
+    "name": "Heroic Grab Bag++",
+    "apiName": "TFT_Augment_HeroicGrabBagPlusPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "stock-market-i",
+    "name": "Stock Market",
+    "apiName": "TFT_Augment_StockMarket",
+    "tier": "unknown"
+  },
+  {
+    "id": "waterlotus_iii",
+    "name": "Water Lotus II",
+    "apiName": "TFT_Augment_WaterLotus2",
+    "tier": "gold"
+  },
+  {
+    "id": "chargetransfer2_ii",
+    "name": "Charge Transfer II",
+    "apiName": "TFT_Augment_ChargeTransfer2",
+    "tier": "gold"
+  },
+  {
+    "id": "bigspender_iii",
+    "name": "Big Spender",
+    "apiName": "TFT_Augment_BigSpender",
+    "tier": "unknown"
+  },
+  {
+    "id": "brb-ii",
+    "name": "BRB",
+    "apiName": "TFT_Augment_BRB",
+    "tier": "unknown"
+  },
+  {
+    "id": "urfsgambit_ii",
+    "name": "Urf's Gambit",
+    "apiName": "TFT_Augment_UrfsGambit",
+    "tier": "unknown"
+  },
+  {
+    "id": "badluckprotection_ii",
+    "name": "Bad Luck Protection",
+    "apiName": "TFT_Augment_BadLuckProtection",
+    "tier": "unknown"
+  },
+  {
+    "id": "investmentstrategy_iii",
+    "name": "Investment Strategy II",
+    "apiName": "TFT_Augment_InvestmentStrategy2",
+    "tier": "gold"
+  },
+  {
+    "id": "bronzeforlife_ii",
+    "name": "Bronze For Life I",
+    "apiName": "TFT_Augment_BronzeForLifeI",
+    "tier": "unknown"
+  },
+  {
+    "id": "investmentstrategy_ii",
+    "name": "Investment Strategy I",
+    "apiName": "TFT_Augment_InvestmentStrategy1",
+    "tier": "silver"
+  },
+  {
+    "id": "void-swarm-iii",
+    "name": "Void Swarm",
+    "apiName": "TFT_Augment_Voidborne",
+    "tier": "unknown"
+  },
+  {
+    "id": "cosmicrestart_ii",
+    "name": "Cosmic Restart",
+    "apiName": "TFT_Augment_CosmicRestart",
+    "tier": "unknown"
+  },
+  {
+    "id": "dualpurpose_iii",
+    "name": "Dual Purpose",
+    "apiName": "TFT_Augment_DualPurpose",
+    "tier": "unknown"
+  },
+  {
+    "id": "highvoltage_ii",
+    "name": "High Voltage",
+    "apiName": "TFT_Augment_HighVoltage",
+    "tier": "unknown"
+  },
+  {
+    "id": "sololeveling_ii",
+    "name": "Solo Leveling",
+    "apiName": "TFT_Augment_SoloLeveling",
+    "tier": "unknown"
+  },
+  {
+    "id": "spellcasterstoolbox_iii",
+    "name": "Spellcaster's Toolbox",
+    "apiName": "TFT_Augment_SpellcastersToolbox",
+    "tier": "unknown"
+  },
+  {
+    "id": "efficientshopper_i",
+    "name": "Efficient Shopper II",
+    "apiName": "TFT_Augment_EfficientShopper2",
+    "tier": "gold"
+  },
+  {
+    "id": "treasurehunt_ii",
+    "name": "Treasure Hunt",
+    "apiName": "TFT_Augment_TreasureHunt",
+    "tier": "unknown"
+  },
+  {
+    "id": "superstars_ii",
+    "name": "Superstars II",
+    "apiName": "TFT_Augment_Superstars",
+    "tier": "unknown"
+  },
+  {
+    "id": "componentexpert_iii",
+    "name": "Component Expert",
+    "apiName": "TFT_Augment_ComponentExpert",
+    "tier": "unknown"
+  },
+  {
+    "id": "slightlymagicroll_i",
+    "name": "Slightly Magic Roll",
+    "apiName": "TFT_Augment_MagicRollMinus",
+    "tier": "unknown"
+  },
+  {
+    "id": "two-trick-ii",
+    "name": "Two Trick",
+    "apiName": "TFT_Augment_TwoTrick",
+    "tier": "unknown"
+  },
+  {
+    "id": "mentorship-i",
+    "name": "Mentorship I",
+    "apiName": "TFT_Augment_Mentorship1",
+    "tier": "silver"
+  },
+  {
+    "id": "mentorship-ii",
+    "name": "Mentorship II",
+    "apiName": "TFT_Augment_Mentorship2",
+    "tier": "gold"
+  },
+  {
+    "id": "blazing-soul-ii",
+    "name": "Blazing Soul I",
+    "apiName": "TFT_Augment_BlazingSoul",
+    "tier": "unknown"
+  },
+  {
+    "id": "findyourcenter_i",
+    "name": "Find Your Center",
+    "apiName": "TFT_Augment_FindYourCenter",
+    "tier": "unknown"
+  },
+  {
+    "id": "shredspread_ii",
+    "name": "Shred Spread",
+    "apiName": "TFT_Augment_VoidTouched",
+    "tier": "unknown"
+  },
+  {
+    "id": "spiritofredemption_ii",
+    "name": "Spirit of Redemption",
+    "apiName": "TFT_Augment_ItemSpiritVisage",
+    "tier": "unknown"
+  },
+  {
+    "id": "speedydoublekill_ii",
+    "name": "Speedy Double Kill",
+    "apiName": "TFT_Augment_SpeedyDoubleKill",
+    "tier": "unknown"
+  },
+  {
+    "id": "forwardthinking_ii",
+    "name": "Forward Thinking",
+    "apiName": "TFT_Augment_ForwardThinking",
+    "tier": "unknown"
+  },
+  {
+    "id": "dhampyr_ii",
+    "name": "Vampiric Vitality I",
+    "apiName": "TFT_Augment_Dhampyr1",
+    "tier": "silver"
+  },
+  {
+    "id": "dhampyr_ii",
+    "name": "Vampiric Vitality II",
+    "apiName": "TFT_Augment_Dhampyr2",
+    "tier": "gold"
+  },
+  {
+    "id": "flexible_ii",
+    "name": "Flexible",
+    "apiName": "TFT_Augment_Flexible",
+    "tier": "unknown"
+  },
+  {
+    "id": "restartmission_i",
+    "name": "Restart Mission",
+    "apiName": "TFT_Augment_RestartMission",
+    "tier": "unknown"
+  },
+  {
+    "id": "duoqueue_ii",
+    "name": "Duo Queue",
+    "apiName": "TFT_Augment_DuoQueue",
+    "tier": "unknown"
+  },
+  {
+    "id": "bloodrage_ii",
+    "name": "Blood Rage",
+    "apiName": "TFT_Augment_BloodRage",
+    "tier": "unknown"
+  },
+  {
+    "id": "griefofthegreatgoddess_i",
+    "name": "Flowing Tears",
+    "apiName": "TFT_Augment_ComponentQuestTear_PAIRS",
+    "tier": "unknown"
+  },
+  {
+    "id": "artifactory_iii",
+    "name": "Artifactory",
+    "apiName": "TFT_Augment_Artifactory",
+    "tier": "unknown"
+  },
+  {
+    "id": "twinguardians_i",
+    "name": "Twin Guardians",
+    "apiName": "TFT_Augment_TwinGuardians",
+    "tier": "unknown"
+  },
+  {
+    "id": "goldengamble_iii",
+    "name": "Golden Gamble+",
+    "apiName": "TFT_Augment_GoldenGamblePlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "exaltedadventure_iii",
+    "name": "An Exalted Adventure",
+    "apiName": "TFT_Augment_AnExaltedAdventure",
+    "tier": "unknown"
+  },
+  {
+    "id": "fivepointedstar_iii",
+    "name": "Five-Pointed Star",
+    "apiName": "TFT_Augment_FivePointedStar",
+    "tier": "unknown"
+  },
+  {
+    "id": "feelinglucky_i",
+    "name": "Feeling Lucky",
+    "apiName": "TFT_Augment_FeelingLucky",
+    "tier": "unknown"
+  },
+  {
+    "id": "advancedloan_ii",
+    "name": "Advanced Loan",
+    "apiName": "TFT_Augment_AdvancedLoan",
+    "tier": "unknown"
+  },
+  {
+    "id": "thegoldendragon_ii",
+    "name": "The Golden Dragon",
+    "apiName": "TFT_Augment_TheGoldenDragon",
+    "tier": "unknown"
+  },
+  {
+    "id": "hyperbolicrodextender_i",
+    "name": "Continuous Conjuration",
+    "apiName": "TFT_Augment_ComponentQuestRod",
+    "tier": "unknown"
+  },
+  {
+    "id": "traittracker_ii",
+    "name": "Trait Tracker",
+    "apiName": "TFT_Augment_TraitTracker",
+    "tier": "unknown"
+  },
+  {
+    "id": "trifecta-iii",
+    "name": "Trifecta II",
+    "apiName": "TFT_Augment_Trifecta2_Set7",
+    "tier": "unknown"
+  },
+  {
+    "id": "infinityprotection_ii",
+    "name": "Infinity Protection",
+    "apiName": "TFT_Augment_InfinityProtection",
+    "tier": "unknown"
+  },
+  {
+    "id": "fortunefavorsthebold_ii",
+    "name": "Fortune Favors the Bold",
+    "apiName": "TFT_Augment_FortuneFavorsTheBold",
+    "tier": "unknown"
+  },
+  {
+    "id": "constructacompanion_iii",
+    "name": "Forge a Friend",
+    "apiName": "TFT_Augment_ForgeAFriend",
+    "tier": "unknown"
+  },
+  {
+    "id": "carepackage_ii",
+    "name": "Care Package",
+    "apiName": "TFT_Augment_HomeCooking",
+    "tier": "unknown"
+  },
+  {
+    "id": "swordsmith_ii",
+    "name": "Swordsmith",
+    "apiName": "TFT_Augment_ForgeSword",
+    "tier": "unknown"
+  },
+  {
+    "id": "calculatedenhancement_iii",
+    "name": "Calculated Enhancement",
+    "apiName": "TFT_Augment_CalculatedEnhancement",
+    "tier": "unknown"
+  },
+  {
+    "id": "final-polish-iii",
+    "name": "Final Polish",
+    "apiName": "TFT_Augment_FinalPolish",
+    "tier": "unknown"
+  },
+  {
+    "id": "furiousblows_ii",
+    "name": "Kahunahuna",
+    "apiName": "TFT_Augment_FuriousBlows",
+    "tier": "unknown"
+  },
+  {
+    "id": "axiom-arc-iii",
+    "name": "Axiom Arc III",
+    "apiName": "TFT_Augment_AxiomArc3",
+    "tier": "prismatic"
+  },
+  {
+    "id": "future-sight-iii",
+    "name": "Future Sight II",
+    "apiName": "TFT_Augment_FutureSight2",
+    "tier": "gold"
+  },
+  {
+    "id": "museumheist_iii",
+    "name": "Component Heist",
+    "apiName": "TFT_Augment_MuseumHeist",
+    "tier": "unknown"
+  },
+  {
+    "id": "bowsmith_ii",
+    "name": "Bowsmith",
+    "apiName": "TFT_Augment_ForgeBow",
+    "tier": "unknown"
+  },
+  {
+    "id": "randuinsimmovableobject_iii",
+    "name": "Immovable Object",
+    "apiName": "TFT_Augment_RanduinsImmovableObject",
+    "tier": "unknown"
+  },
+  {
+    "id": "aurafarming_ii",
+    "name": "Aura Farming",
+    "apiName": "TFT_Augment_AuraFarming",
+    "tier": "unknown"
+  },
+  {
+    "id": "beltoverflow_iii",
+    "name": "Belt Overflow",
+    "apiName": "TFT_Augment_BeltOverflow",
+    "tier": "unknown"
+  },
+  {
+    "id": "forgedinstrength_iii",
+    "name": "Forged in Strength",
+    "apiName": "TFT_Augment_ForgedInStrength",
+    "tier": "unknown"
+  },
+  {
+    "id": "eyeforaneye_i",
+    "name": "Eye For An Eye",
+    "apiName": "TFT_Augment_EyeForAnEye",
+    "tier": "unknown"
+  },
+  {
+    "id": "teslacoil_ii",
+    "name": "Tesla Coil",
+    "apiName": "TFT_Augment_TeslaCoil",
+    "tier": "unknown"
+  },
+  {
+    "id": "thetraittree_iii",
+    "name": "The Trait Tree",
+    "apiName": "TFT_Augment_TraitTree",
+    "tier": "unknown"
+  },
+  {
+    "id": "savingsaccount_ii",
+    "name": "Savings Account",
+    "apiName": "TFT_Augment_SavingsAccount",
+    "tier": "unknown"
+  },
+  {
+    "id": "blacksmithtraining_i",
+    "name": "Blacksmith Training",
+    "apiName": "TFT_Augment_BlacksmithTraining",
+    "tier": "unknown"
+  },
+  {
+    "id": "craftedcrafting_i",
+    "name": "Crafted Crafting",
+    "apiName": "TFT_Augment_CraftedCrafting",
+    "tier": "unknown"
+  },
+  {
+    "id": "incoming_i",
+    "name": "Lit Fuse",
+    "apiName": "TFT_Augment_Incoming",
+    "tier": "unknown"
+  },
+  {
+    "id": "birthdayreunion_ii",
+    "name": "Birthday Reunion",
+    "apiName": "TFT_Augment_BirthdayReunion",
+    "tier": "unknown"
+  },
+  {
+    "id": "exclusivecustomization_ii",
+    "name": "Exclusive Customization II",
+    "apiName": "TFT_Augment_ExclusiveCustomization2",
+    "tier": "gold"
+  },
+  {
+    "id": "exclusivecustomization_ii",
+    "name": "Exclusive Customization",
+    "apiName": "TFT_Augment_ExclusiveCustomization",
+    "tier": "unknown"
+  },
+  {
+    "id": "invested-iii",
+    "name": "Invested++",
+    "apiName": "TFT_Augment_InvestedPlusPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "dawnbringer-spirit-i",
+    "name": "Combat Bandages I",
+    "apiName": "TFT_Augment_DawnbringersBlessing1",
+    "tier": "silver"
+  },
+  {
+    "id": "wandoverflow_iii",
+    "name": "Wand Overflow",
+    "apiName": "TFT_Augment_WandOverflow",
+    "tier": "unknown"
+  },
+  {
+    "id": "greatermoonlight_iii",
+    "name": "Greater Moonlight",
+    "apiName": "TFT_Augment_GreaterMoonlight",
+    "tier": "unknown"
+  },
+  {
+    "id": "dawnbringer-spirit-ii",
+    "name": "Combat Bandages II",
+    "apiName": "TFT_Augment_DawnbringersBlessing2",
+    "tier": "gold"
+  },
+  {
+    "id": "extrabuckles_i",
+    "name": "Extra Buckles",
+    "apiName": "TFT_Augment_ComponentQuestBelt_PAIRS",
+    "tier": "unknown"
+  },
+  {
+    "id": "spreadingroots_ii",
+    "name": "Spreading Roots+",
+    "apiName": "TFT_Augment_SpreadingRootsPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "allforone_ii",
+    "name": "One For All II",
+    "apiName": "TFT_Augment_AllForOneII",
+    "tier": "unknown"
+  },
+  {
+    "id": "lineup-i",
+    "name": "Lineup",
+    "apiName": "TFT_Augment_Lineup",
+    "tier": "unknown"
+  },
+  {
+    "id": "luxurysubscription_iii",
+    "name": "Luxury Subscription",
+    "apiName": "TFT_Augment_LuxurySubscription",
+    "tier": "unknown"
+  },
+  {
+    "id": "boosterpack1_ii",
+    "name": "Booster Pack",
+    "apiName": "TFT_Augment_BoosterPack",
+    "tier": "unknown"
+  },
+  {
+    "id": "goldengamble_iii",
+    "name": "Golden Gamble++",
+    "apiName": "TFT_Augment_GoldenGamblePlusPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "glasscannon_ii",
+    "name": "Glass Cannon II",
+    "apiName": "TFT_Augment_GlassCannonII",
+    "tier": "unknown"
+  },
+  {
+    "id": "darkalleydealings_iii",
+    "name": "Dark Alley Dealings",
+    "apiName": "TFT_Augment_DarkAlleyDealings",
+    "tier": "unknown"
+  },
+  {
+    "id": "efficientshopper_i",
+    "name": "Efficient Shopper",
+    "apiName": "TFT_Augment_EfficientShopper",
+    "tier": "unknown"
+  },
+  {
+    "id": "overheal_ii",
+    "name": "Overheal",
+    "apiName": "TFT_Augment_Overheal",
+    "tier": "unknown"
+  },
+  {
+    "id": "thornplatedarmor_ii",
+    "name": "Thorn-Plated Armor",
+    "apiName": "TFT_Augment_ThornPlatedArmor",
+    "tier": "unknown"
+  },
+  {
+    "id": "timeskip_ii",
+    "name": "Time Skip",
+    "apiName": "TFT_Augment_TimeSkip",
+    "tier": "unknown"
+  },
+  {
+    "id": "advancedloan_ii",
+    "name": "Advanced Loan+",
+    "apiName": "TFT_Augment_AdvancedLoanPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "recurvewrecker_i",
+    "name": "Backup Bows",
+    "apiName": "TFT_Augment_ComponentQuestBow_PAIRS",
+    "tier": "unknown"
+  },
+  {
+    "id": "vertically-inclined-ii",
+    "name": "Vertically Inclined",
+    "apiName": "TFT_Augment_VerticallyInclined",
+    "tier": "unknown"
+  },
+  {
+    "id": "secondcoronation_ii",
+    "name": "Second Coronation",
+    "apiName": "TFT_Augment_ItemCrownguard",
+    "tier": "unknown"
+  },
+  {
+    "id": "calledshot_i",
+    "name": "Called Shot",
+    "apiName": "TFT_Augment_CalledShot",
+    "tier": "unknown"
+  },
+  {
+    "id": "eyeforaneye_i",
+    "name": "Eye For An Eye+",
+    "apiName": "TFT_Augment_EyeForAnEyePlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "searchfortheyordlelord_iii",
+    "name": "An Upgraded Adventure",
+    "apiName": "TFT_Augment_SearchForTheYordleLord",
+    "tier": "unknown"
+  },
+  {
+    "id": "marksman_i",
+    "name": "Focused Fire",
+    "apiName": "TFT_Augment_MarksMan",
+    "tier": "unknown"
+  },
+  {
+    "id": "sideeffects_ii",
+    "name": "Side Effects",
+    "apiName": "TFT_Augment_SideEffects",
+    "tier": "unknown"
+  },
+  {
+    "id": "invested-iii",
+    "name": "Invested+",
+    "apiName": "TFT_Augment_InvestedPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "ghostofunitspast_iii",
+    "name": "Ghost of Friends Past",
+    "apiName": "TFT_Augment_GhostOfUnitsPast",
+    "tier": "unknown"
+  },
+  {
+    "id": "bodyguardstraining_ii",
+    "name": "Bodyguard Training",
+    "apiName": "TFT_Augment_BodyguardTraining",
+    "tier": "unknown"
+  },
+  {
+    "id": "crymeariver_ii",
+    "name": "Cry Me A River",
+    "apiName": "TFT_Augment_CryMeARiver",
+    "tier": "unknown"
+  },
+  {
+    "id": "delayedshipment_i",
+    "name": "Delayed Shipment",
+    "apiName": "TFT_Augment_DelayedShipment",
+    "tier": "unknown"
+  },
+  {
+    "id": "a-magical-roll-ii",
+    "name": "A Magic Roll",
+    "apiName": "TFT_Augment_MagicRoll",
+    "tier": "unknown"
+  },
+  {
+    "id": "bladeoverflow_iii",
+    "name": "Sword Overflow",
+    "apiName": "TFT_Augment_SwordOverflow",
+    "tier": "unknown"
+  },
+  {
+    "id": "thetower_i",
+    "name": "The Tower",
+    "apiName": "TFT_Augment_TheTower",
+    "tier": "unknown"
+  },
+  {
+    "id": "westicktogether_iii",
+    "name": "We Stick Together",
+    "apiName": "TFT_Augment_WeStickTogether",
+    "tier": "unknown"
+  },
+  {
+    "id": "silverdestiny_i",
+    "name": "Silver Destiny++",
+    "apiName": "TFT_Augment_SilverDestinyPlusPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "carveapath_i",
+    "name": "Carve a Path",
+    "apiName": "TFT_Augment_ComponentQuestSword_PAIRS",
+    "tier": "unknown"
+  },
+  {
+    "id": "perfectloss_i",
+    "name": "Precise Planning",
+    "apiName": "TFT_Augment_PerfectLoss",
+    "tier": "unknown"
+  },
+  {
+    "id": "worththewait_iii",
+    "name": "Worth the Wait II",
+    "apiName": "TFT_Augment_WorthTheWaitPrismatic",
+    "tier": "unknown"
+  },
+  {
+    "id": "titanictitan_i",
+    "name": "Titanic Titan",
+    "apiName": "TFT_Augment_TitanicTitan",
+    "tier": "unknown"
+  },
+  {
+    "id": "itemladder_i",
+    "name": "Item Ladder",
+    "apiName": "TFT_Augment_ItemLadder",
+    "tier": "unknown"
+  },
+  {
+    "id": "misfits_ii",
+    "name": "Misfits",
+    "apiName": "TFT_Augment_Misfits",
+    "tier": "unknown"
+  },
+  {
+    "id": "headstart_i",
+    "name": "Delayed Start",
+    "apiName": "TFT_Augment_HeadStart",
+    "tier": "unknown"
+  },
+  {
+    "id": "clockworkaccelerator_ii",
+    "name": "Clockwork Accelerator",
+    "apiName": "TFT_Augment_ClockworkAccelerator",
+    "tier": "unknown"
+  },
+  {
+    "id": "protaganist_iii",
+    "name": "Protagonist",
+    "apiName": "TFT_Augment_Protagonist",
+    "tier": "unknown"
+  },
+  {
+    "id": "two-tanky-ii",
+    "name": "Two Tanky",
+    "apiName": "TFT_Augment_TwoTanky",
+    "tier": "unknown"
+  },
+  {
+    "id": "kingslayer_i",
+    "name": "Kingslayer",
+    "apiName": "TFT_Augment_Kingslayer",
+    "tier": "unknown"
+  },
+  {
+    "id": "thefloorislava_ii",
+    "name": "The Floor is Lava",
+    "apiName": "TFT_Augment_TheFloorIsLava",
+    "tier": "unknown"
+  },
+  {
+    "id": "anoblesacrifice_ii",
+    "name": "Noble Sacrifice",
+    "apiName": "TFT_Augment_NobleSacrifice",
+    "tier": "unknown"
+  },
+  {
+    "id": "starrynight_ii",
+    "name": "Starry Night",
+    "apiName": "TFT_Augment_StarryNight",
+    "tier": "unknown"
+  },
+  {
+    "id": "corrosion_i",
+    "name": "Corrosion",
+    "apiName": "TFT_Augment_Corrosion",
+    "tier": "unknown"
+  },
+  {
+    "id": "onthehouse_i",
+    "name": "On The House",
+    "apiName": "TFT_Augment_OnTheHouse",
+    "tier": "unknown"
+  },
+  {
+    "id": "boxinglessons_i",
+    "name": "Boxing Lessons",
+    "apiName": "TFT_Augment_BoxingLessons",
+    "tier": "unknown"
+  },
+  {
+    "id": "golemify_ii",
+    "name": "Golemify",
+    "apiName": "TFT_Augment_Golemify",
+    "tier": "unknown"
+  },
+  {
+    "id": "pyromaniac_ii",
+    "name": "Pyromaniac",
+    "apiName": "TFT_Augment_Pyromaniac",
+    "tier": "unknown"
+  },
+  {
+    "id": "indiscriminateslayer_ii",
+    "name": "Indiscriminate Killer",
+    "apiName": "TFT_Augment_JustSlayer",
+    "tier": "unknown"
+  },
+  {
+    "id": "shimmerscaleessence_iii",
+    "name": "Shimmerscale Essence",
+    "apiName": "TFT_Augment_ShimmerscaleEssence",
+    "tier": "unknown"
+  },
+  {
+    "id": "griefofthegreatgoddess_i",
+    "name": "Flowing Tears",
+    "apiName": "TFT_Augment_ComponentQuestTear",
+    "tier": "unknown"
+  },
+  {
+    "id": "cookingpot_ii",
+    "name": "Cooking Pot",
+    "apiName": "TFT_Augment_CookingPot_HR",
+    "tier": "unknown"
+  },
+  {
+    "id": "branching-out-i",
+    "name": "Branching Out",
+    "apiName": "TFT_Augment_BranchingOut",
+    "tier": "unknown"
+  },
+  {
+    "id": "hyperbolicrodextender_i",
+    "name": "Continuous Conjuration",
+    "apiName": "TFT_Augment_ComponentQuestRod_PAIRS",
+    "tier": "unknown"
+  },
+  {
+    "id": "soloplate_ii",
+    "name": "Solo Plate",
+    "apiName": "TFT_Augment_ItemGargoyleStoneplate",
+    "tier": "unknown"
+  },
+  {
+    "id": "sweettreats_iii",
+    "name": "Sweet Treats",
+    "apiName": "TFT_Augment_SweetTreats",
+    "tier": "unknown"
+  },
+  {
+    "id": "precisesmithing_i",
+    "name": "Precise Smithing",
+    "apiName": "TFT_Augment_PreciseSmithing",
+    "tier": "unknown"
+  },
+  {
+    "id": "subscriptionservice_iii",
+    "name": "Subscription Service",
+    "apiName": "TFT_Augment_SubscriptionService",
+    "tier": "unknown"
+  },
+  {
+    "id": "prismaticdestiny_iii",
+    "name": "Prismatic Destiny",
+    "apiName": "TFT_Augment_PrismaticDestiny",
+    "tier": "unknown"
+  },
+  {
+    "id": "will-of-the-spear-ii",
+    "name": "Spear's Will",
+    "apiName": "TFT_Augment_ShojinSpirit",
+    "tier": "unknown"
+  },
+  {
+    "id": "krakensfury_ii",
+    "name": "Press the Attack",
+    "apiName": "TFT_Augment_ItemKrakenSlayer",
+    "tier": "unknown"
+  },
+  {
+    "id": "noscoutnopivot_ii",
+    "name": "NO SCOUT NO PIVOT",
+    "apiName": "TFT_Augment_NoScoutNoPivot",
+    "tier": "unknown"
+  },
+  {
+    "id": "backup-i",
+    "name": "Backup",
+    "apiName": "TFT_Augment_Backup",
+    "tier": "unknown"
+  },
+  {
+    "id": "goldfordummies_ii",
+    "name": "Gold For Dummies",
+    "apiName": "TFT_Augment_GoldForDummies",
+    "tier": "unknown"
+  },
+  {
+    "id": "lategamescaling_ii",
+    "name": "Late Game Scaling",
+    "apiName": "TFT_Augment_LateGameScaling",
+    "tier": "unknown"
+  },
+  {
+    "id": "qualityoverquantity_iii",
+    "name": "Quality Over Quantity",
+    "apiName": "TFT_Augment_QualityOverQuantity",
+    "tier": "unknown"
+  },
+  {
+    "id": "defensive-call-ii",
+    "name": "Powered Shields",
+    "apiName": "TFT_Augment_DefenseCall",
+    "tier": "unknown"
+  },
+  {
+    "id": "moneyhungry1_ii",
+    "name": "Money Hungry",
+    "apiName": "TFT_Augment_MoneyHungry",
+    "tier": "unknown"
+  },
+  {
+    "id": "onaroll_i",
+    "name": "On a Roll",
+    "apiName": "TFT_Augment_Waverider",
+    "tier": "unknown"
+  },
+  {
+    "id": "placebo_i",
+    "name": "Placebo",
+    "apiName": "TFT_Augment_Placebo",
+    "tier": "unknown"
+  },
+  {
+    "id": "doubledown_ii",
+    "name": "Double Down",
+    "apiName": "TFT_Augment_DoubleDown",
+    "tier": "unknown"
+  },
+  {
+    "id": "mirroredmonetization_ii",
+    "name": "Malicious Monetization",
+    "apiName": "TFT_Augment_MirroredMonetization",
+    "tier": "unknown"
+  },
+  {
+    "id": "unlimitedpower_iii",
+    "name": "Unlimited Power",
+    "apiName": "TFT_Augment_UnlimitedPower",
+    "tier": "unknown"
+  },
+  {
+    "id": "cookingpot_ii",
+    "name": "Cooking Pot",
+    "apiName": "TFT_Augment_CookingPot",
+    "tier": "unknown"
+  },
+  {
+    "id": "scavenger_ii",
+    "name": "Scavenger",
+    "apiName": "TFT_Augment_Scavenger",
+    "tier": "unknown"
+  },
+  {
+    "id": "maythefoursbewithyou_ii",
+    "name": "May the Fours Be With You",
+    "apiName": "TFT_Augment_MayTheFoursBeWithYou",
+    "tier": "unknown"
+  },
+  {
+    "id": "pilfer_ii",
+    "name": "Pilfer",
+    "apiName": "TFT_Augment_Pilfer",
+    "tier": "unknown"
+  },
+  {
+    "id": "threethrees_ii",
+    "name": "3 Threes",
+    "apiName": "TFT_Augment_ThreeThrees",
+    "tier": "unknown"
+  },
+  {
+    "id": "criticalsuccess_i",
+    "name": "Critical Success",
+    "apiName": "TFT_Augment_ComponentQuestGlove",
+    "tier": "unknown"
+  },
+  {
+    "id": "carveapath_i",
+    "name": "Carve a Path",
+    "apiName": "TFT_Augment_ComponentQuestSword",
+    "tier": "unknown"
+  },
+  {
+    "id": "constructacompanion_iii",
+    "name": "Construct a Companion",
+    "apiName": "TFT_Augment_ConstructACompanion",
+    "tier": "unknown"
+  },
+  {
+    "id": "sponging_iii",
+    "name": "Sponging",
+    "apiName": "TFT_Augment_Sponging",
+    "tier": "unknown"
+  },
+  {
+    "id": "petricitearmor_ii",
+    "name": "Petricite Armor II",
+    "apiName": "TFT_Augment_PetriciteArmorII",
+    "tier": "unknown"
+  },
+  {
+    "id": "moonlight_ii",
+    "name": "Moonlight",
+    "apiName": "TFT_Augment_Moonlight",
+    "tier": "unknown"
+  },
+  {
+    "id": "evilbeyondmeasure_ii",
+    "name": "Evil Beyond Measure",
+    "apiName": "TFT_Augment_EvilBeyondMeasure",
+    "tier": "unknown"
+  },
+  {
+    "id": "isekai_iii",
+    "name": "Isekai",
+    "apiName": "TFT_Augment_Isekai_Prodigy",
+    "tier": "unknown"
+  },
+  {
+    "id": "awakenedsoul_iii",
+    "name": "Soul Awakening",
+    "apiName": "TFT_Augment_AwakenedSoul",
+    "tier": "unknown"
+  },
+  {
+    "id": "avenge-the-fallen-ii",
+    "name": "Avenge The Fallen",
+    "apiName": "TFT_Augment_AvengeTheFallen",
+    "tier": "unknown"
+  },
+  {
+    "id": "slice_of_life_i",
+    "name": "Slice of Life",
+    "apiName": "TFT_Augment_SliceOfLife",
+    "tier": "unknown"
+  },
+  {
+    "id": "moneymonsoon_iii",
+    "name": "Money Monsoon",
+    "apiName": "TFT_Augment_MoneyMonsoon",
+    "tier": "unknown"
+  },
+  {
+    "id": "shopglitch_ii",
+    "name": "Shop Glitch",
+    "apiName": "TFT_Augment_ShopGlitch",
+    "tier": "unknown"
+  },
+  {
+    "id": "warpath_ii",
+    "name": "Warpath",
+    "apiName": "TFT_Augment_Warpath",
+    "tier": "unknown"
+  },
+  {
+    "id": "bulkybuddies_ii",
+    "name": "Bulky Buddies II",
+    "apiName": "TFT_Augment_BulkyBuddies2",
+    "tier": "gold"
+  },
+  {
+    "id": "bulkybuddies_iii",
+    "name": "Bulky Buddies III",
+    "apiName": "TFT_Augment_BulkyBuddies3",
+    "tier": "prismatic"
+  },
+  {
+    "id": "aheroarrives_iii",
+    "name": "A Hero Arrives!",
+    "apiName": "TFT_Augment_AHeroArrives",
+    "tier": "unknown"
+  },
+  {
+    "id": "trailofblood_ii",
+    "name": "Blood Offering",
+    "apiName": "TFT_Augment_TheDarkinBlade",
+    "tier": "unknown"
+  },
+  {
+    "id": "bulkybuddies_i",
+    "name": "Bulky Buddies I",
+    "apiName": "TFT_Augment_BulkyBuddies1",
+    "tier": "silver"
+  },
+  {
+    "id": "anotherone_ii",
+    "name": "Another One!+",
+    "apiName": "TFT_Augment_AnotherOnePlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "extrabuckles_i",
+    "name": "Extra Buckles",
+    "apiName": "TFT_Augment_ComponentQuestBelt",
+    "tier": "unknown"
+  },
+  {
+    "id": "will-of-the-flail-ii",
+    "name": "Mace's Will",
+    "apiName": "TFT_Augment_GuardbreakerSpirit",
+    "tier": "unknown"
+  },
+  {
+    "id": "legionofthrees_ii",
+    "name": "Legion of Threes",
+    "apiName": "TFT_Augment_LegionOfThrees",
+    "tier": "unknown"
+  },
+  {
+    "id": "windfall2",
+    "name": "Gain @Gold@ Gold",
+    "apiName": "TFT_Augment_GainGold",
+    "tier": "unknown"
+  },
+  {
+    "id": "imthecarrynow_iii",
+    "name": "I'm the Carry Now",
+    "apiName": "TFT_Augment_ImTheCarryNow",
+    "tier": "unknown"
+  },
+  {
+    "id": "sizematters_i",
+    "name": "Size Matters",
+    "apiName": "TFT_Augment_SizeMatters",
+    "tier": "unknown"
+  },
+  {
+    "id": "boosterpack1_ii",
+    "name": "Booster Pack++",
+    "apiName": "TFT_Augment_BoosterPackPlusPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "lonesurvivor_i",
+    "name": "Lone Hero",
+    "apiName": "TFT_Augment_LoneHero",
+    "tier": "unknown"
+  },
+  {
+    "id": "boosterpack1_ii",
+    "name": "Booster Pack+",
+    "apiName": "TFT_Augment_BoosterPackPlus",
+    "tier": "unknown"
+  },
+  {
+    "id": "assassinstoolbox_iii",
+    "name": "Assassin's Toolbox",
+    "apiName": "TFT_Augment_AssassinsToolbox",
+    "tier": "unknown"
+  },
+  {
+    "id": "pairoffours_ii",
+    "name": "Pair of Fours",
+    "apiName": "TFT_Augment_PairOfFours",
+    "tier": "unknown"
+  },
+  {
+    "id": "pairoffours_ii",
+    "name": "Pair of Fours",
+    "apiName": "TFT_Augment_PairOfFours_Set7",
+    "tier": "unknown"
+  },
+  {
+    "id": "categoryfive_ii",
+    "name": "Category Five",
+    "apiName": "TFT_Augment_CategoryFive",
+    "tier": "unknown"
+  },
+  {
+    "id": "allforone_i",
+    "name": "One For All I",
+    "apiName": "TFT_Augment_AllForOneI",
+    "tier": "unknown"
+  },
+  {
+    "id": "customfitted_ii",
+    "name": "Custom Fitted",
+    "apiName": "TFT_Augment_CustomFitted",
+    "tier": "unknown"
+  },
+  {
+    "id": "cognitiveoverload_ii",
+    "name": "Cognitive Overload",
+    "apiName": "TFT_Augment_CognitiveOverload",
+    "tier": "unknown"
+  },
+  {
+    "id": "kickstart_i",
+    "name": "Kick Start",
+    "apiName": "TFT_Augment_KickStart",
+    "tier": "unknown"
+  },
+  {
+    "id": "comebackstory_iii",
+    "name": "Comeback Story",
+    "apiName": "TFT_Augment_ComebackStory",
+    "tier": "unknown"
+  },
+  {
+    "id": "promisedprotection_ii",
+    "name": "Promised Protection",
+    "apiName": "TFT_Augment_PromisedProtection",
+    "tier": "unknown"
+  },
+  {
+    "id": "deadlierblades_ii",
+    "name": "Deadlier Blades",
+    "apiName": "TFT_Augment_TragicalBlade",
+    "tier": "unknown"
+  },
+  {
+    "id": "justhit_iii",
+    "name": "Just Hit",
+    "apiName": "TFT_Augment_JustHit",
+    "tier": "unknown"
+  },
+  {
+    "id": "underdogs1",
+    "name": "Underdogs",
+    "apiName": "TFT_Augment_Underdogs",
+    "tier": "unknown"
+  }
+]
