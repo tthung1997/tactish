@@ -145,7 +145,6 @@
     { "id": "radiant-quicksilver",       "name": "Radiant Quicksilver",       "category": "radiant" },
     { "id": "radiant-warmogs-armor",     "name": "Radiant Warmog's Armor",    "category": "radiant" },
     { "id": "radiant-strikers-flail",    "name": "Radiant Striker's Flail",   "category": "radiant" },
-    { "id": "radiant-thiefs-gloves",     "name": "Radiant Thief's Gloves",    "category": "radiant" },
-    { "id": "radiant-spirit-visage",     "name": "Radiant Spirit Visage",     "category": "radiant" }
+    { "id": "radiant-thiefs-gloves",     "name": "Radiant Thief's Gloves",    "category": "radiant" }
   ]
 }
